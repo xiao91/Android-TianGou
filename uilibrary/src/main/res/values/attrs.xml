@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--圆形图片-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <!--左右设置菜单-->
+    <declare-styleable name="BlockMenuItem">
+    <attr name="mainIcon" format="reference" />
+    <attr name="extendIcon" format="reference" />
+    <attr name="text" format="string" />
+    <attr name="extendText" format="string" />
+    <attr name="topBorder" format="dimension" />
+    <attr name="bottomBorder" format="dimension" />
+    <attr name="borderColor" format="reference|color" />
+    <attr name="textColor" format="reference" />
+    <attr name="extendTextColor" format="reference" />
+    <attr name="textSize" format="dimension" />
+    <attr name="extendTextSize" format="dimension" />
+    <attr name="iconMargin" format="dimension" />
+    <attr name="extendIconMargin" format="dimension" />
+    <attr name="textMargin" format="dimension" />
+    <attr name="extendTextMargin" format="dimension" />
+    <attr name="mainIconSize" format="dimension" />
+    <attr name="extendIconSize" format="dimension" />
+    <attr name="topBorderStartFromText" format="boolean" />
+    <attr name="bottomBorderStartFromText" format="boolean" />
+    <attr name="vertical" format="boolean" />
+    </declare-styleable>
+
+</resources>

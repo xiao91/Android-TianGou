@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- PopupWindow上下弹出的效果 -->
+    <style name="PopupWindowAnimStyle">
+        <item name="android:windowEnterAnimation">@anim/down_popup_in</item>
+        <item name="android:windowExitAnimation">@anim/down_popup_out</item>
+    </style>
+
+    <!--窗口属性1-->
+    <style name="BottomDialogThemeDefault">
+        <!-- 设置无边框 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 设置未浮动窗口 -->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 设置无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置背景色 -->
+        <item name="android:windowBackground">@color/bottom_dialog_bg_white</item>
+        <!-- 设置屏幕变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--设置满屏-->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--窗口属性2-->
+    <style name="BottomDialogThemeTransparent">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- Transparent -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/bottom_dialog_bg_white</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!--从底部出来和退出动画-->
+    <style name="BottomDialogAnimStyle" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/bottom_dialog_in</item>
+        <item name="@android:windowExitAnimation">@anim/bottom_dialog_out</item>
+    </style>
+
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimary">#0286F0</color>
+    <color name="colorPrimaryDark">#0376F0</color>
+    <color name="colorAccent">#0286F0</color>
+
+    <color name="colorSwipeRefresh1">#0286F0</color>
+    <color name="colorSwipeRefresh2">#0385F0</color>
+    <color name="colorSwipeRefresh3">#0484F0</color>
+    <color name="colorSwipeRefresh4">#0583F0</color>
+
+    <color name="view_line">#DBDBDB</color>
+
+    <color name="color_white">#FFFFFF</color>
+
+    <!--内容frame背景色-->
+    <color name="color_main_frame_bg">#EEEEEE</color>
+
+    <!--底部导航颜色-->
+    <color name="navigation_bg">#F4F5F6</color>
+    <color name="navigation_text_selected">#0286F0</color>
+    <color name="navigation_text_unselected">#888888</color>
+
+    <!--顶部导航颜色-->
+    <color name="tablayout_text_unselected">#666666</color>
+    <color name="tablayout_text_selected">#0286F0</color>
+
+    <color name="item_content_bg">#FAFBFD</color>
+    <color name="color_item_content">#333333</color>
+    <color name="color_item_username">#666666</color>
+    <color name="color_item_type">#0286F0</color>
+
+    <color name="color_good_bad_comment_skip">#0286F0</color>
+    <color name="color_pressed_good_bad_comment_skip">#CCCCCC</color>
+
+    <color name="me_title">#FFFFFF</color>
+    <color name="me_fensi_txt">#EFEFEF</color>
+
+    <color name="fab_add_unselected">#0286F0</color>
+    <color name="fab_add_select">#8DC8FA</color>
+    <color name="fab_add_ripple">#33728dff</color>
+
+    <color name="dialog_no">#999999</color>
+    <color name="dialog_ok">#0286F0</color>
+    <color name="dialog_content">#666666</color>
+
+</resources>

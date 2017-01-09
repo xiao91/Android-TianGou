@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10"
+    android:layout_marginTop="@dimen/dp_10"
+    android:background="@color/item_content_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/item_user_photo"
+            android:layout_height="@dimen/item_user_photo"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/item_contents_iv_user_photo" />
+
+        <TextView
+            android:text="xiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/color_item_username"
+            android:layout_toRightOf="@+id/item_contents_iv_user_photo"
+            android:layout_toEndOf="@+id/item_contents_iv_user_photo"
+            android:id="@+id/item_contents_tv_user_name" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/delete"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/item_contents_delete" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_contents_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="@color/color_item_content"
+        android:textSize="@dimen/sp_item_content"
+        android:text="笑话标题"/>
+
+    <TextView
+        android:id="@+id/item_contents_tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gray_hollow_corner1"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="@color/color_item_username"
+        android:textSize="@dimen/sp_item_type"
+        android:text="段子"/>
+
+    <!--搞笑图片-->
+    <ImageView
+        android:id="@+id/item_contents_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="@dimen/dp_10"
+        android:minHeight="@dimen/item_min_image"
+        android:maxHeight="@dimen/item_max_image"/>
+
+    <!--段子-->
+    <TextView
+        android:id="@+id/item_contents_tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="@color/color_item_content"
+        android:textSize="@dimen/sp_item_content"
+        android:text="笑话内容"/>
+
+    <!--视频-->
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:id="@+id/contents_videoplayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:visibility="gone">
+    </fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
+
+    <com.xl91.ui.MenuGridView
+        android:id="@+id/contents_gv_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:visibility="gone"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="8dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center">
+    </com.xl91.ui.MenuGridView>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            style="@style/GoodBadCommentSkip"
+            android:id="@+id/item_contents_tv_good"
+            android:drawableLeft="@drawable/item_good" />
+
+        <TextView
+            android:id="@+id/item_contents_tv_bad"
+            style="@style/GoodBadCommentSkip"
+            android:drawableLeft="@drawable/item_bad" />
+
+        <TextView
+            android:id="@+id/item_contents_tv_comment"
+            style="@style/GoodBadCommentSkip"
+            android:drawableLeft="@drawable/item_comments" />
+
+        <TextView
+            android:id="@+id/item_contents_tv_skip"
+            style="@style/GoodBadCommentSkip"
+            android:drawableLeft="@drawable/item_skip" />
+
+    </LinearLayout>
+
+</LinearLayout>

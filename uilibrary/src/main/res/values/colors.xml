@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bottom_dialog_bg_white">#FFFFFF</color>
+
+    <color name="no_net_btn">#F33F03</color>
+
+    <color name="nodeColor">#cccccc</color>
+    <color name="nodeTextColor">#ec6a37</color>
+
+</resources>

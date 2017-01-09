@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_good_bad_comment_skip"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:text="不喜欢的理由"
+        android:textColor="@color/me_title"
+        android:textSize="@dimen/sp_16" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_6"
+            android:text="过时、重复"
+            android:textColor="@color/dialog_content"
+            android:textSize="@dimen/sp_16" />
+
+        <CheckBox
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:button="@drawable/checkbox_selector"
+            android:padding="@dimen/dp_10"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/dialog_content"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_6"
+            android:text="低俗、太污"
+            android:textColor="@color/dialog_content"
+            android:textSize="@dimen/sp_16" />
+
+        <CheckBox
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:button="@drawable/checkbox_selector"
+            android:padding="@dimen/dp_10"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/dialog_content"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_6"
+            android:text="令人不适"
+            android:textColor="@color/dialog_content"
+            android:textSize="@dimen/sp_16" />
+
+        <CheckBox
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:button="@drawable/checkbox_selector"
+            android:padding="@dimen/dp_10"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/dialog_content"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_005"
+        android:background="@color/view_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_tv_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="取消"
+            android:textColor="@color/dialog_no"
+            android:textSize="@dimen/sp_16" />
+
+        <View
+            android:layout_width="@dimen/dp_005"
+            android:layout_height="match_parent"
+            android:background="@color/view_line" />
+
+        <TextView
+            android:id="@+id/dialog_tv_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="确定"
+            android:textColor="@color/dialog_ok"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+</LinearLayout>

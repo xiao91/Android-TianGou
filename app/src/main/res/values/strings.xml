@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">天狗</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">发现</string>
+
+    <string name="me_title">我的</string>
+    <string name="title_activity_login">LoginActivity</string>
+</resources>
