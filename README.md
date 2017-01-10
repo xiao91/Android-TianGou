@@ -16,19 +16,15 @@ Android端登陆账户：
 
 ### 2. 首页内容显示效果 ###
 
-<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_段子.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_故事.png" width="250">
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_段子.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_故事2.png" width="250">
 
 <br/>
 
-<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_故事2.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_漫画.png" width="250">
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_漫画.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_美女图片.png" width="250">
 
 <br/>
 
-<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_美女.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_美女图片.png" width="250">
-
-<br/>
-
-<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_视频.png" width="250">
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_视频.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_视频2.png" width="250">
 
 ### 3. [下载Demo](https://github.com/xiao91/Android-TianGou/raw/master/pic/tiangou_1.0.apk) ###
 

@@ -17,3 +17,4 @@
 #}
 
 -dontwarn okio.**;
+-keep class com.google.android.exoplayer.** { *; }

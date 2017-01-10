@@ -250,6 +250,23 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
             }
         });
 
+        recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+                if (JCVideoPlayerManager.getFirstFloor() != null) {
+                    JCVideoPlayer videoPlayer = JCVideoPlayerManager.getCurrentJcvd();
+                    if (((ViewGroup) view).indexOfChild(videoPlayer) != -1 && videoPlayer.currentState == JCVideoPlayer.CURRENT_STATE_PLAYING) {
+                        JCVideoPlayer.releaseAllVideos();
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -299,9 +316,7 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
     @Override
     public void onPause() {
         super.onPause();
-        if (JCVideoPlayerManager.getFirstFloor() != null) {
-            JCVideoPlayer.releaseAllVideos();
-        }
+        JCVideoPlayer.releaseAllVideos();
     }
 
     @Override

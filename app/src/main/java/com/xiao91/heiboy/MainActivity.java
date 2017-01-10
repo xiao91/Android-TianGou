@@ -14,6 +14,8 @@ import com.xiao91.heiboy.fragment.FindFragment;
 import com.xiao91.heiboy.fragment.MainFragment;
 import com.xiao91.heiboy.fragment.MeFragment;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
  * 首页
  * <p>
@@ -114,6 +116,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
     }
 
 }
