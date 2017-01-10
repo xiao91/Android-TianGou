@@ -1,11 +1,7 @@
 package com.xiao91.heiboy.adapter;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -16,7 +12,7 @@ import com.xiao91.heiboy.R;
 import com.xiao91.heiboy.bean.Contents;
 import com.xiao91.heiboy.glide.GlideCircleImageTransform;
 import com.xiao91.heiboy.impl.OnClickGridImageItemListener;
-import com.xiao91.heiboy.utils.UrlUtil;
+import com.xiao91.heiboy.utils.TianGouUrls;
 import com.xl91.ui.MenuGridView;
 
 import java.util.ArrayList;
@@ -26,11 +22,12 @@ import java.util.List;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
- * 分组评论
+ * 内容item
+ *
  * Created by xiao on 16-10-10.
  */
 
-public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, BaseViewHolder> {
+public class ContentsItemAdapter extends BaseQuickAdapter<Contents.Data.ContentsInfo, BaseViewHolder> {
 
     private static final int TYPE_TUIJIAN = 0;
     private static final int TYPE_DUANZI = 1;
@@ -42,7 +39,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
 
     private OnClickGridImageItemListener onClickGridImageItemListener;
 
-    public ContentsItemAdapter(int layoutResId, List<Contents.ContentInfo> data) {
+    public ContentsItemAdapter(int layoutResId, List<Contents.Data.ContentsInfo> data) {
         super(layoutResId, data);
     }
 
@@ -51,7 +48,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Contents.ContentInfo item) {
+    protected void convert(BaseViewHolder helper, Contents.Data.ContentsInfo item) {
         final int adapterPosition = helper.getLayoutPosition() - getHeaderLayoutCount();
 
         // 用户头像
@@ -74,7 +71,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
 
         // 用户头像
         Glide.with(mContext)
-                .load(UrlUtil.IMAGE_URL + item.user_photo)
+                .load(TianGouUrls.IMAGE_URL + item.userPhoto)
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
@@ -83,7 +80,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
                 .into((ImageView) helper.getView(R.id.item_contents_iv_user_photo));
 
         // 用户名
-        helper.setText(R.id.item_contents_tv_user_name, item.user_name);
+        helper.setText(R.id.item_contents_tv_user_name, item.username);
         // 标题
         helper.setText(R.id.item_contents_tv_title, item.title);
 
@@ -111,9 +108,9 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
                 // 类型
                 helper.setText(R.id.item_contents_tv_type, "段子");
 
-                String content_desc = item.content_desc;
+                String content_desc = item.contentDesc;
                 if (content_desc.contains("<br/>")) {
-                    String desc = item.content_desc.replace("<br/>", "");
+                    String desc = item.contentDesc.replace("<br/>", "");
                     helper.setText(R.id.item_contents_tv_desc, desc);
                 }else {
                     helper.setText(R.id.item_contents_tv_desc, content_desc);
@@ -137,7 +134,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
 
                 // 内容图片
                 Glide.with(mContext)
-                        .load(item.img_url)
+                        .load(item.imgUrlOrContent)
                         .centerCrop()
                         .placeholder(R.mipmap.ic_launcher)
                         .error(R.mipmap.ic_launcher)
@@ -162,7 +159,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
                 helper.setText(R.id.item_contents_tv_type, "美女高清图");
 
                 List<String> imgUrls = new ArrayList<>();
-                String img = item.img_url;
+                String img = item.imgUrlOrContent;
                 if (img.contains(";")) {
                     imgUrls = Arrays.asList(img.split(";"));
                 }else {
@@ -196,7 +193,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
                 helper.setText(R.id.item_contents_tv_type, "故事汇");
 
                 // 只显示描述：点击后可看见全部内容
-                helper.setText(R.id.item_contents_tv_desc, item.content_desc);
+                helper.setText(R.id.item_contents_tv_desc, item.contentDesc);
                 break;
             /**
              * 5：漫画：可能有多张图，只显示一张
@@ -215,7 +212,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
 
                 // 取第一张
                 List<String> imgUrls1 = new ArrayList<>();
-                String img1= item.img_url;
+                String img1= item.imgUrlOrContent;
                 if (img1.contains(";")) {
                     imgUrls1 = Arrays.asList(img1.split(";"));
                 }else {
@@ -245,7 +242,7 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
                 // 类型
                 helper.setText(R.id.item_contents_tv_type, "视频");
 
-                contents_videoplayer.setUp(item.img_url, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+                contents_videoplayer.setUp(item.imgUrlOrContent, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
                 // 添加缩略图
                 Glide.with(mContext)
                         .load(R.mipmap.ic_launcher)
@@ -261,12 +258,12 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.ContentInfo, 
         }
 
         // 点赞
-        helper.setText(R.id.item_contents_tv_good, item.stamp_count);
+        helper.setText(R.id.item_contents_tv_good, item.goodCount);
         // 踩
-        helper.setText(R.id.item_contents_tv_bad, item.praise_count);
+        helper.setText(R.id.item_contents_tv_bad, item.badCount);
         // 评价
-        helper.setText(R.id.item_contents_tv_comment, item.comment_count);
+        helper.setText(R.id.item_contents_tv_comment, item.commentCount);
         // 转发
-        helper.setText(R.id.item_contents_tv_skip, item.retrans_count);
+        helper.setText(R.id.item_contents_tv_skip, item.shareCount);
     }
 }

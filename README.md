@@ -14,17 +14,25 @@ Android端登陆账户：
 
 集笑话段子、美女图片、内涵图、短视频、漫画等，仅供学习和交流使用，欢迎提意见和star。
 
-### 2. 首页内容 ###
+### 2. 首页内容显示效果 ###
 
-![首页](https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_段子.png)
-![首页](https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_故事.png)
-![首页](https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_故事2.png)
-![首页](https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_漫画.png)
-![首页](https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_美女.png)
-![首页](https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_美女图片.png)
-![首页](https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_视频.png)
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_段子.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_故事.png" width="250">
+
+<br/>
+
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_故事2.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_漫画.png" width="250">
+
+<br/>
+
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_美女.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_美女图片.png" width="250">
+
+<br/>
+
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_视频.png" width="250">
 
 ### 3. [下载Demo](https://github.com/xiao91/Android-TianGou/raw/master/pic/tiangou_1.0.apk) ###
+
+请先搭建完成PHP后端，才有数据显示！！！
 
 ### 4. 版本 ###
 

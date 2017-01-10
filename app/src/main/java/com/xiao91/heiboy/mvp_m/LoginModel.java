@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 import com.xiao91.heiboy.bean.LoginUser;
-import com.xiao91.heiboy.utils.UrlUtil;
+import com.xiao91.heiboy.utils.TianGouUrls;
 
 /**
  * Created by xiao on 2017/1/3 0003.
@@ -22,7 +22,7 @@ public class LoginModel {
     }
 
     public void requestData(String username, String password, final OnCompleteDataListener<LoginUser> listener) {
-        String url = UrlUtil.HOME_URL + UrlUtil.LOGIN_URL + "username=" +  username + "&password=" + password;
+        String url = TianGouUrls.HOME_URL + TianGouUrls.LOGIN_URL + "username=" +  username + "&password=" + password;
         okHttp.get()
                 .url(url)
                 .tag(this)

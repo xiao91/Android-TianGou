@@ -5,7 +5,7 @@ package com.xiao91.heiboy.bean;
  * Created by xiao on 2017/1/4 0004.
  */
 
-public class DownloadApk {
+public class Apk {
 
     public int ret;
     public ApkInfo data;
@@ -13,7 +13,7 @@ public class DownloadApk {
 
     @Override
     public String toString() {
-        return "DownloadApk{" +
+        return "Apk{" +
                 "ret=" + ret +
                 ", data=" + data +
                 ", msg='" + msg + '\'' +
@@ -21,16 +21,26 @@ public class DownloadApk {
     }
 
     public static class ApkInfo {
+        public String apkId;
         public String versionName;
-        public int versionCode;
+        public String versionCode;
         public String versionDesc;
         public String downloadUrl;
+
+        public ApkInfo(String apkId, String versionName, String versionCode, String versionDesc, String downloadUrl) {
+            this.apkId = apkId;
+            this.versionName = versionName;
+            this.versionCode = versionCode;
+            this.versionDesc = versionDesc;
+            this.downloadUrl = downloadUrl;
+        }
 
         @Override
         public String toString() {
             return "ApkInfo{" +
-                    "versionName='" + versionName + '\'' +
-                    ", versionCode=" + versionCode +
+                    "apkId='" + apkId + '\'' +
+                    ", versionName='" + versionName + '\'' +
+                    ", versionCode='" + versionCode + '\'' +
                     ", versionDesc='" + versionDesc + '\'' +
                     ", downloadUrl='" + downloadUrl + '\'' +
                     '}';

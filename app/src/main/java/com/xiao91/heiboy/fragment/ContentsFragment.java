@@ -26,6 +26,7 @@ import com.xiao91.heiboy.bean.Contents;
 import com.xiao91.heiboy.impl.OnClickGridImageItemListener;
 import com.xiao91.heiboy.mvp_p.ContentsPresenter;
 import com.xiao91.heiboy.mvp_v.ContentsView;
+import com.xiao91.heiboy.view.CustomLoadMoreView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerManager;
  * <p>
  * 2017-01-07
  */
-public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPresenter> implements ContentsView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPresenter> implements ContentsView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String TYPE = "type";
@@ -52,6 +53,9 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
 
     private AlertDialog dialog;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ContentsItemAdapter contentsAdapter;
+    private List<SparseBooleanArray> list;
+    private int currentCount;
 
     public ContentsFragment() {
         // Required empty public constructor
@@ -129,8 +133,14 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
     public void showData(Contents result) {
         swipeRefreshLayout.setRefreshing(false);
 
-        List<Contents.ContentInfo> data = result.data;
-        ContentsItemAdapter contentsAdapter = new ContentsItemAdapter(R.layout.item_contents_view, data);
+        List<Contents.Data.ContentsInfo> data = result.data.contents;
+        currentCount = result.data.currentCount;
+
+        contentsAdapter = new ContentsItemAdapter(R.layout.item_contents_view, data);
+        contentsAdapter.setEnableLoadMore(true);
+        contentsAdapter.setLoadMoreView(new CustomLoadMoreView());
+        contentsAdapter.setOnLoadMoreListener(this);
+
         recyclerView.setAdapter(contentsAdapter);
 
         /**
@@ -139,7 +149,7 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
          * 添加、删除数据均要操作
          *
          */
-        final List<SparseBooleanArray> list = new ArrayList<>();
+        list = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
             sparseBooleanArray.put(0, false);
@@ -152,7 +162,7 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
             public void onRecyclerViewItemClick(View view, int parentPosition, int childPosition) {
                 Log.e("Contents", "点击的parentPosition=" + (parentPosition + 1));
 
-                Toast.makeText(getActivity(), "点击九宫图的第" + (childPosition+1) + "个", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击九宫图的第" + (childPosition + 1) + "个", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -249,7 +259,7 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
      */
     private void initDialog(int position) {
         View viewDialog = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_contents_delete, null, false);
-        dialog =  new AlertDialog.Builder(getContext())
+        dialog = new AlertDialog.Builder(getContext())
                 .setView(viewDialog)
                 .show();
 
@@ -261,10 +271,11 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
 
     }
 
-
     @Override
     public void showErrorMessage(String errorMsg) {
         swipeRefreshLayout.setRefreshing(false);
+
+        Toast.makeText(getActivity(), "加载出错了", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -305,7 +316,6 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
 
     /**
      * 刷新
-     *
      */
     @Override
     public void onRefresh() {
@@ -318,5 +328,53 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 2000);
+    }
+
+    /**
+     * 加载更多数据
+     */
+    @Override
+    public void onLoadMoreRequested() {
+        mPresenter.requestMoreData(type, currentCount);
+    }
+
+    /**
+     * 显示更多数据
+     *
+     * @param contents
+     */
+    @Override
+    public void showMoreData(Contents contents) {
+        contentsAdapter.loadMoreComplete();
+
+        List<Contents.Data.ContentsInfo> contentsMore = contents.data.contents;
+
+        if (contentsMore.isEmpty()) {
+            contentsAdapter.loadMoreEnd();
+
+            return;
+
+        }
+        contentsAdapter.loadMoreEnd(false);
+        // 当前个数加上加载更多的个数
+        currentCount += contents.data.currentCount;
+
+        contentsAdapter.addData(contentsMore);
+
+        int size = contentsMore.size();
+        for (int i = 0; i < size; i++) {
+            SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
+            sparseBooleanArray.put(0, false);
+            sparseBooleanArray.put(1, false);
+            list.add(size, sparseBooleanArray);
+        }
+
+    }
+
+    @Override
+    public void showMoreDataError(String errorMsg) {
+        contentsAdapter.loadMoreComplete();
+
+        Toast.makeText(getActivity(), "加载出错了", Toast.LENGTH_SHORT).show();
     }
 }

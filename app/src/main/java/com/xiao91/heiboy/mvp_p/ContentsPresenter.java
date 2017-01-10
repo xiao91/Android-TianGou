@@ -34,4 +34,23 @@ public class ContentsPresenter extends AbsBasePresenter<ContentsView> {
             }
         });
     }
+
+    /**
+     * 更多数据
+     * @param type
+     * @param currentCount
+     */
+    public void requestMoreData(int type, int currentCount) {
+        contentsModel.requestMoreData(type, currentCount, new OnCompleteDataListener<Contents>() {
+            @Override
+            public void onComplete(Contents result) {
+                contentsView.showMoreData(result);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                contentsView.showMoreDataError(errorMsg);
+            }
+        });
+    }
 }

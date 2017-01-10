@@ -9,4 +9,8 @@ import com.xiao91.heiboy.bean.Contents;
 
 public interface ContentsView extends IBaseView<Contents> {
 
+    void showMoreData(Contents contents);
+
+    void showMoreDataError(String errorMsg);
+
 }

@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BaseRecyclerViewAdapterHelperlibrary/BaseRecyclerViewAdapterHelperlibrary.iml" filepath="$PROJECT_DIR$/BaseRecyclerViewAdapterHelperlibrary/BaseRecyclerViewAdapterHelperlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/NewHeiBoy.iml" filepath="$PROJECT_DIR$/NewHeiBoy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TianGou.iml" filepath="$PROJECT_DIR$/TianGou.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/jcvideoplayer-lib/jcvideoplayer-lib.iml" filepath="$PROJECT_DIR$/jcvideoplayer-lib/jcvideoplayer-lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/myokhttplibrary/myokhttplibrary.iml" filepath="$PROJECT_DIR$/myokhttplibrary/myokhttplibrary.iml" />
