@@ -54,10 +54,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ContentsDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_contents_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".MultiImageActivity"
+            android:label="@string/title_activity_multi_image"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>

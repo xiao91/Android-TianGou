@@ -22,7 +22,7 @@ public class LoginModel {
     }
 
     public void requestData(String username, String password, final OnCompleteDataListener<LoginUser> listener) {
-        String url = TianGouUrls.HOME_URL + TianGouUrls.LOGIN_URL + "username=" +  username + "&password=" + password;
+        String url = TianGouUrls.HOST_URL + TianGouUrls.LOGIN_URL + "username=" +  username + "&password=" + password;
         okHttp.get()
                 .url(url)
                 .tag(this)

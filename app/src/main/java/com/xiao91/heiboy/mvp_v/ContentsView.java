@@ -1,6 +1,7 @@
 package com.xiao91.heiboy.mvp_v;
 
 import com.xiao91.heiboy.bean.Contents;
+import com.xiao91.heiboy.bean.GoodOrBadCount;
 
 /**
  *
@@ -12,5 +13,9 @@ public interface ContentsView extends IBaseView<Contents> {
     void showMoreData(Contents contents);
 
     void showMoreDataError(String errorMsg);
+
+    void showUpdateGoodCount(GoodOrBadCount goodOrBadCount);
+
+    void showUpdateBadCount(GoodOrBadCount goodOrBadCount);
 
 }

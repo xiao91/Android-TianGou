@@ -2,6 +2,7 @@ package com.xl91.ui;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,8 @@ public class BottomDialog {
     private int mThemeStyle;
 
     /**
-     *
-     * @param context    上下文
-     * @param resId      布局资源id
+     * @param context 上下文
+     * @param resId   布局资源id
      */
     public BottomDialog(Context context, int resId) {
         this.mContext = context;
@@ -70,10 +70,14 @@ public class BottomDialog {
 
         // 获取当前窗口window
         Window window = mDialog.getWindow();
+        // 隐藏软键盘
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         // x轴与y轴位置
         layoutParams.x = 0;
-        layoutParams.y =  window.getWindowManager().getDefaultDisplay().getHeight();
+        layoutParams.y = window.getWindowManager().getDefaultDisplay().getHeight();
 
         // 设置布局参数
         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;

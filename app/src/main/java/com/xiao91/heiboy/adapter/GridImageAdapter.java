@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiao91.heiboy.R;
+import com.xiao91.heiboy.impl.OnClickRecyclerItemListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,8 @@ public class GridImageAdapter extends BaseAdapter {
     private Context context;
     private List<String> imgUrls = new ArrayList<>();
     private final LayoutInflater inflater;
+
+    private OnClickRecyclerItemListener onClickRecyclerItemListener;
 
     private int maxCount;
 
@@ -46,6 +49,10 @@ public class GridImageAdapter extends BaseAdapter {
 
     }
 
+    public void setOnClickRecyclerItemListener(OnClickRecyclerItemListener onClickRecyclerItemListener) {
+        this.onClickRecyclerItemListener = onClickRecyclerItemListener;
+    }
+
     @Override
     public int getCount() {
         return imgUrls.size();
@@ -62,7 +69,7 @@ public class GridImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         ViewHolder viewHolder = null;
         if (view == null) {
@@ -88,6 +95,15 @@ public class GridImageAdapter extends BaseAdapter {
             viewHolder.item_tv_count.setVisibility(View.VISIBLE);
             viewHolder.item_tv_count.setText("+ " + (maxCount - 9));
         }
+
+        viewHolder.item_iv_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onClickRecyclerItemListener != null) {
+                    onClickRecyclerItemListener.onRecyclerViewItemClick(view, position);
+                }
+            }
+        });
 
         return view;
     }

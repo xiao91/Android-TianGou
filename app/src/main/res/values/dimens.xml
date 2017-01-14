@@ -15,18 +15,26 @@
     <dimen name="dp_30">30dp</dimen>
     <dimen name="dp_tab_40">40dp</dimen>
 
-    <dimen name="dp_me_title_h">50dp</dimen>
+    <dimen name="dp_share_img">50dp</dimen>
+
+    <dimen name="dp_me_title_h">45dp</dimen>
     <dimen name="me_title">40dp</dimen>
     <dimen name="sp_me_title">16sp</dimen>
+
+    <dimen name="dp_video">200dp</dimen>
 
     <dimen name="item_user_photo">40dp</dimen>
     <dimen name="item_min_image">200dp</dimen>
     <dimen name="item_max_image">250dp</dimen>
 
+    <dimen name="sp_item_comment">16sp</dimen>
+
     <dimen name="sp_good_bad">13sp</dimen>
     <!--item内容字体大小-->
     <dimen name="sp_item_content">18sp</dimen>
     <dimen name="sp_item_type">12sp</dimen>
+
+    <dimen name="sp_11">11sp</dimen>
 
     <!--九宫图-->
     <dimen name="sp_item_img_txt_24">24sp</dimen>

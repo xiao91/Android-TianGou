@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_contents_details"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_10"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/item_content_bg"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_20">
+
+        <ImageView
+            android:id="@+id/details_iv_user_photo"
+            android:layout_width="@dimen/item_user_photo"
+            android:layout_height="@dimen/item_user_photo"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/details_tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toEndOf="@+id/details_iv_user_photo"
+            android:layout_toRightOf="@+id/details_iv_user_photo"
+            android:text="天狗"
+            android:textColor="@color/color_item_username"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/details_tv_user_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/details_tv_user_name"
+            android:layout_alignStart="@+id/details_tv_user_name"
+            android:layout_below="@+id/details_tv_user_name"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="天狗"
+            android:textColor="@color/dialog_no"
+            android:textSize="@dimen/sp_11" />
+
+        <TextView
+            android:id="@+id/details_tv_care"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/details_tv_user_name"
+            android:background="@drawable/blue_hollow_corner"
+            android:text="关注"
+            android:textColor="@color/root_title"
+            android:textSize="@dimen/sp_12" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/include_content_type" />
+
+</LinearLayout>

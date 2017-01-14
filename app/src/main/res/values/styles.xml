@@ -26,8 +26,14 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/item_contents_good_bad</item>
         <item name="android:textSize">@dimen/sp_good_bad</item>
-        <item name="android:text">1000</item>
+        <item name="android:text">0</item>
         <item name="android:drawablePadding">6dp</item>
+    </style>
+
+    <style name="LinesView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_005</item>
+        <item name="android:background">@color/view_line</item>
     </style>
 
 </resources>

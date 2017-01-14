@@ -12,6 +12,7 @@ import com.xiao91.heiboy.R;
 import com.xiao91.heiboy.bean.Contents;
 import com.xiao91.heiboy.glide.GlideCircleImageTransform;
 import com.xiao91.heiboy.impl.OnClickGridImageItemListener;
+import com.xiao91.heiboy.impl.OnClickRecyclerItemListener;
 import com.xiao91.heiboy.utils.TianGouUrls;
 import com.xl91.ui.MenuGridView;
 
@@ -49,8 +50,6 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.Data.Contents
 
     @Override
     protected void convert(BaseViewHolder helper, Contents.Data.ContentsInfo item) {
-        final int adapterPosition = helper.getLayoutPosition() - getHeaderLayoutCount();
-
         // 用户头像
         helper.addOnClickListener(R.id.item_contents_iv_user_photo);
         // 删除
@@ -58,6 +57,8 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.Data.Contents
 
         // 段子
         helper.addOnClickListener(R.id.item_contents_tv_desc);
+
+        helper.addOnClickListener(R.id.contents_gv_img);
         // 搞笑图
         helper.addOnClickListener(R.id.item_contents_iv);
 
@@ -158,25 +159,34 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.Data.Contents
                 // 类型
                 helper.setText(R.id.item_contents_tv_type, "美女高清图");
 
-                List<String> imgUrls = new ArrayList<>();
+                // 九宫图图片集合
+                final ArrayList<String> meiNvUrls = new ArrayList<>();
                 String img = item.imgUrlOrContent;
                 if (img.contains(";")) {
-                    imgUrls = Arrays.asList(img.split(";"));
+                    String[] split = img.split(";");
+                    for (String aSplit : split) {
+                        meiNvUrls.add(aSplit);
+                    }
                 }else {
-                    imgUrls.add("img");
+                    meiNvUrls.add(img);
                 }
 
-                final GridImageAdapter adapter = new GridImageAdapter(mContext, imgUrls);
+                final GridImageAdapter adapter = new GridImageAdapter(mContext, meiNvUrls);
                 contents_gv_img.setAdapter(adapter);
 
-                contents_gv_img.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                /**
+                 * 不能用gridview做点击事件，用adapter做嵌套点击
+                 *
+                 */
+                adapter.setOnClickRecyclerItemListener(new OnClickRecyclerItemListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        if (null != onClickGridImageItemListener) {
-                            onClickGridImageItemListener.onRecyclerViewItemClick(view, adapterPosition, i);
+                    public void onRecyclerViewItemClick(View view, int position) {
+                        if (onClickGridImageItemListener != null) {
+                            onClickGridImageItemListener.onClickGridImageItemListener(view, position, meiNvUrls);
                         }
                     }
                 });
+
                 break;
             /**
              * 4:鬼故事
@@ -211,16 +221,19 @@ public class ContentsItemAdapter extends BaseQuickAdapter<Contents.Data.Contents
                 helper.setText(R.id.item_contents_tv_type, "漫画");
 
                 // 取第一张
-                List<String> imgUrls1 = new ArrayList<>();
-                String img1= item.imgUrlOrContent;
+                List<String> manhuaUrls = new ArrayList<>();
+                String img1 = item.imgUrlOrContent;
                 if (img1.contains(";")) {
-                    imgUrls1 = Arrays.asList(img1.split(";"));
+                    String[] split = img1.split(";");
+                    for (String aSplit : split) {
+                        manhuaUrls.add(aSplit);
+                    }
                 }else {
-                    imgUrls1.add(img1);
+                    manhuaUrls.add(img1);
                 }
 
                 Glide.with(mContext)
-                        .load(imgUrls1.get(0))
+                        .load(manhuaUrls.get(0))
                         .centerCrop()
                         .placeholder(R.mipmap.ic_launcher)
                         .error(R.mipmap.ic_launcher)

@@ -26,6 +26,10 @@ Android端登陆账户：
 
 <img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_视频.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/首页_视频2.png" width="250">
 
+<br/>
+
+<img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/内容详情.png" width="250">
+
 ### 3. [下载Demo](https://github.com/xiao91/Android-TianGou/raw/master/pic/tiangou_1.0.apk) ###
 
 请先搭建完成PHP后端，才有数据显示！！！
@@ -52,6 +56,8 @@ Android端登陆账户：
 
 - 视频播放：[jcvideoplayer-lib](https://github.com/lipangit/JieCaoVideoPlayer)
 
+- 事件、View绑定：[butterknife](https://github.com/JakeWharton/butterknife)
+
 - 其他UI：
 
 	...
@@ -59,3 +65,19 @@ Android端登陆账户：
 ### 6. 联系我 ###
 
 我的QQ：1693538112
+
+### License ###
+
+    Copyright (C) 2017 lxiao5501@gmail.com
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.

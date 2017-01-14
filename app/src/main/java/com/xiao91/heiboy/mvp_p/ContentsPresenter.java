@@ -1,6 +1,7 @@
 package com.xiao91.heiboy.mvp_p;
 
 import com.xiao91.heiboy.bean.Contents;
+import com.xiao91.heiboy.bean.GoodOrBadCount;
 import com.xiao91.heiboy.mvp_m.ContentsModel;
 import com.xiao91.heiboy.mvp_m.OnCompleteDataListener;
 import com.xiao91.heiboy.mvp_v.ContentsView;
@@ -45,6 +46,34 @@ public class ContentsPresenter extends AbsBasePresenter<ContentsView> {
             @Override
             public void onComplete(Contents result) {
                 contentsView.showMoreData(result);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                contentsView.showMoreDataError(errorMsg);
+            }
+        });
+    }
+
+    public void requestUpdateGoodCount(String contentsId) {
+        contentsModel.requestUpdateGoodCount(contentsId, new OnCompleteDataListener<GoodOrBadCount>() {
+            @Override
+            public void onComplete(GoodOrBadCount result) {
+                contentsView.showUpdateGoodCount(result);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                contentsView.showMoreDataError(errorMsg);
+            }
+        });
+    }
+
+    public void requestUpdateBadCount(String contentsId) {
+        contentsModel.requestUpdateBadCount(contentsId, new OnCompleteDataListener<GoodOrBadCount>() {
+            @Override
+            public void onComplete(GoodOrBadCount result) {
+                contentsView.showUpdateBadCount(result);
             }
 
             @Override

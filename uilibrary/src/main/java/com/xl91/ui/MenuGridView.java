@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.widget.GridView;
 
 /**
- * ScrollView嵌套GridView；GridView失去滑动特性
+ * ScrollView、RecyclerView嵌套GridView；GridView失去滑动特性
  * Created by xiao on 2016/8/24.
  */
 public class MenuGridView extends GridView {

@@ -7,4 +7,12 @@
 
     <string name="me_title">我的</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_contents_details">ContentsDetailsActivity</string>
+
+    <string name="toast_error">加载出错了</string>
+
+    <string name="comments_edit">我的神评论&#8230;</string>
+    <string name="comments_send">评论</string>
+    <string name="count_clicked">被顶过了</string>
+    <string name="title_activity_multi_image">MultiImageActivity</string>
 </resources>

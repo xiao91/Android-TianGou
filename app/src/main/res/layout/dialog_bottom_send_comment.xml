@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/item_content_bg"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_10">
+
+    <EditText
+        android:id="@+id/dialog_et_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gray_hollow_corner"
+        android:drawableLeft="@mipmap/edit"
+        android:drawablePadding="@dimen/dp_10"
+        android:singleLine="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:ems="255"
+        android:paddingBottom="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_8"
+        android:textColorHint="@color/dialog_no"
+        android:textSize="@dimen/sp_16"
+        android:hint="@string/comments_edit" />
+
+    <TextView
+        android:id="@+id/dialog_tv_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_et_comment"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_8"
+        android:background="@drawable/gray_tv_bg_corner"
+        android:textColor="@color/color_white"
+        android:text="@string/comments_send" />
+
+    <TextView
+        android:text="分享至："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialog_share"
+        android:layout_alignTop="@+id/dialog_tv_send"
+        android:paddingBottom="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@mipmap/weibo_qzone"
+        android:id="@+id/imageView"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_toRightOf="@+id/dialog_share"
+        android:layout_toEndOf="@+id/dialog_share"
+        android:layout_below="@+id/dialog_et_comment" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@mipmap/weibo_sina"
+        android:id="@+id/imageView2"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_alignBottom="@+id/dialog_share"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+</RelativeLayout>

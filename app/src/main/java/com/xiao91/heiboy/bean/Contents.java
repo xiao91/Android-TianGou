@@ -1,10 +1,14 @@
 package com.xiao91.heiboy.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * 内容
  * Created by xiao on 2017/1/10 0005.
+ *
  */
 
 public class Contents {
@@ -44,7 +48,7 @@ public class Contents {
                     '}';
         }
 
-        public static class ContentsInfo {
+        public static class ContentsInfo implements Parcelable {
             public String contentsId;
             public String userId;
             public String imgUrlOrContent;
@@ -75,6 +79,34 @@ public class Contents {
                 this.userPhoto = userPhoto;
             }
 
+            protected ContentsInfo(Parcel in) {
+                contentsId = in.readString();
+                userId = in.readString();
+                imgUrlOrContent = in.readString();
+                contentDesc = in.readString();
+                title = in.readString();
+                type = in.readString();
+                goodCount = in.readString();
+                badCount = in.readString();
+                commentCount = in.readString();
+                shareCount = in.readString();
+                createTime = in.readString();
+                username = in.readString();
+                userPhoto = in.readString();
+            }
+
+            public static final Creator<ContentsInfo> CREATOR = new Creator<ContentsInfo>() {
+                @Override
+                public ContentsInfo createFromParcel(Parcel in) {
+                    return new ContentsInfo(in);
+                }
+
+                @Override
+                public ContentsInfo[] newArray(int size) {
+                    return new ContentsInfo[size];
+                }
+            };
+
             @Override
             public String toString() {
                 return "ContentsInfo{" +
@@ -92,6 +124,28 @@ public class Contents {
                         ", username='" + username + '\'' +
                         ", userPhoto='" + userPhoto + '\'' +
                         '}';
+            }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel parcel, int i) {
+                parcel.writeString(contentsId);
+                parcel.writeString(userId);
+                parcel.writeString(imgUrlOrContent);
+                parcel.writeString(contentDesc);
+                parcel.writeString(title);
+                parcel.writeString(type);
+                parcel.writeString(goodCount);
+                parcel.writeString(badCount);
+                parcel.writeString(commentCount);
+                parcel.writeString(shareCount);
+                parcel.writeString(createTime);
+                parcel.writeString(username);
+                parcel.writeString(userPhoto);
             }
         }
     }

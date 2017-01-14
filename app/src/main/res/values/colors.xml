@@ -13,7 +13,11 @@
     <color name="colorSwipeRefresh3">#0484F0</color>
     <color name="colorSwipeRefresh4">#0583F0</color>
 
-    <color name="view_line">#DBDBDB</color>
+    <!--标题-->
+    <color name="root_bg">#FFFFFF</color>
+    <color name="root_title">#0286F0</color>
+
+    <color name="view_line">#45DBDBDB</color>
 
     <color name="color_white">#FFFFFF</color>
 

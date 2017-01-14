@@ -1,6 +1,7 @@
 package com.xiao91.heiboy.fragment;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,19 +20,24 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.xiao91.heiboy.ContentsDetailsActivity;
+import com.xiao91.heiboy.MultiImageActivity;
 import com.xiao91.heiboy.R;
 import com.xiao91.heiboy.adapter.ContentsItemAdapter;
 import com.xiao91.heiboy.bean.Contents;
+import com.xiao91.heiboy.bean.GoodOrBadCount;
+import com.xiao91.heiboy.domain.ShareDomain;
 import com.xiao91.heiboy.impl.OnClickGridImageItemListener;
 import com.xiao91.heiboy.mvp_p.ContentsPresenter;
 import com.xiao91.heiboy.mvp_v.ContentsView;
 import com.xiao91.heiboy.view.CustomLoadMoreView;
+import com.xl91.ui.CustomToast;
+import com.xl91.ui.flypopup.FlyPopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerManager;
 
 /**
  * 内容显示
@@ -157,48 +162,115 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
             list.add(i, sparseBooleanArray);
         }
 
+        /**
+         * 九宫图点击item跳转
+         *
+         */
         contentsAdapter.setOnClickGridImageItemListener(new OnClickGridImageItemListener() {
             @Override
-            public void onRecyclerViewItemClick(View view, int parentPosition, int childPosition) {
-                Log.e("Contents", "点击的parentPosition=" + (parentPosition + 1));
-
-                Toast.makeText(getActivity(), "点击九宫图的第" + (childPosition + 1) + "个", Toast.LENGTH_SHORT).show();
+            public void onClickGridImageItemListener(View view, int position, ArrayList<String> url) {
+                Intent intent = new Intent(getActivity(), MultiImageActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("imgList", url);
+                bundle.putInt("position", position);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
+        /**
+         * item点击事件
+         *
+         */
         recyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
+
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemClick(adapter, view, position);
+
+                Contents.Data.ContentsInfo item = (Contents.Data.ContentsInfo) adapter.getItem(position);
+                Intent intent = new Intent(getActivity(), ContentsDetailsActivity.class);
+                Bundle bundleJoke = new Bundle();
+                bundleJoke.putParcelable("contents", item);
+                intent.putExtras(bundleJoke);
+                startActivity(intent);
+
+            }
+
             @Override
             public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                Contents.Data.ContentsInfo item = (Contents.Data.ContentsInfo) adapter.getItem(position);
+                Intent intent = null;
                 switch (view.getId()) {
                     case R.id.item_contents_iv_user_photo:
                         Toast.makeText(getActivity(), "点击了头像~", Toast.LENGTH_SHORT).show();
                         break;
+                    /**
+                     * 段子、单张图片点击
+                     *
+                     */
                     case R.id.item_contents_tv_desc:
-                        Toast.makeText(getActivity(), "点击了文本内容~", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.item_contents_iv:
-                        Toast.makeText(getActivity(), "点击了图片~", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getActivity(), ContentsDetailsActivity.class);
+                        Bundle bundleJoke = new Bundle();
+                        bundleJoke.putParcelable("contents", item);
+                        intent.putExtras(bundleJoke);
+                        startActivity(intent);
                         break;
                     /**
-                     * 赞
+                     * 内涵图或者是漫画
+                     *
+                     */
+                    case R.id.item_contents_iv:
+                        intent = new Intent(getActivity(), ContentsDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("contents", item);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        break;
+                    /**
+                     * 赞:还需要判断是否登陆
                      *
                      */
                     case R.id.item_contents_tv_good:
                         // 判断当前是否踩过:被踩过，不能点赞
                         boolean isCheckBad = list.get(position).get(1);
                         if (!isCheckBad) {
-                            // 设置当前为true
-                            list.get(position).put(0, true);
+                            // 该条内容没有点赞过才能点赞
+                            boolean isClickGood = list.get(position).get(0);
+                            if (!isClickGood) {
+                                // 设置当前为true
+                                list.get(position).put(0, true);
 
-                            TextView item_contents_tv_good = (TextView) view;
-                            Resources resources = getActivity().getResources();
-                            Drawable drawable = resources.getDrawable(R.mipmap.good_blue);
-                            int blue = resources.getColor(R.color.color_good_bad_comment_skip);
-                            // 设置边界
-                            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                            // 画在左边
-                            item_contents_tv_good.setCompoundDrawables(drawable, null, null, null);
-                            item_contents_tv_good.setTextColor(blue);
+                                TextView item_contents_tv_good = (TextView) view;
+
+                                // 更新本地数据
+                                String count = (Integer.parseInt(item.goodCount) + 1) + "";
+
+                                // 更新该条数据
+                                item.goodCount = count;
+                                contentsAdapter.notifyDataSetChanged();
+
+                                item_contents_tv_good.setText(count);
+
+                                // 设置点击后的颜色变化
+                                Resources resources = getActivity().getResources();
+                                Drawable drawable = resources.getDrawable(R.mipmap.good_blue);
+                                int blue = resources.getColor(R.color.color_good_bad_comment_skip);
+                                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                                item_contents_tv_good.setCompoundDrawables(drawable, null, null, null);
+                                item_contents_tv_good.setTextColor(blue);
+
+                                // 添加+1动画
+                                FlyPopupWindow flyPopupWindow = new FlyPopupWindow(getActivity());
+                                flyPopupWindow.setTextInfo("+ 1", blue, 15);
+                                flyPopupWindow.show(item_contents_tv_good);
+
+                                // 更新服务器数据
+                                mPresenter.requestUpdateGoodCount(item.contentsId);
+                            } else {
+                                String title = getActivity().getResources().getString(R.string.count_clicked);
+                                CustomToast.show(getActivity(), title, CustomToast.LENGTH_SHORT);
+                            }
                         }
                         break;
                     /**
@@ -208,32 +280,59 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
                     case R.id.item_contents_tv_bad:
                         boolean isCheckGood = list.get(position).get(0);
                         if (!isCheckGood) {
-                            list.get(position).put(1, true);
+                            boolean isClickBad = list.get(position).get(1);
+                            if (!isClickBad) {
+                                list.get(position).put(1, true);
 
-                            TextView item_contents_tv_bad = (TextView) view;
-                            Resources resources = getActivity().getResources();
-                            Drawable drawableBad = resources.getDrawable(R.mipmap.good_blue);
-                            int blue = resources.getColor(R.color.color_good_bad_comment_skip);
-                            drawableBad.setBounds(0, 0, drawableBad.getMinimumWidth(), drawableBad.getMinimumHeight());
-                            item_contents_tv_bad.setCompoundDrawables(drawableBad, null, null, null);
-                            item_contents_tv_bad.setTextColor(blue);
+                                TextView item_contents_tv_bad = (TextView) view;
+
+                                // 更新该条数据
+                                String count = Integer.parseInt(item.badCount) + 1 + "";
+                                item.badCount = count;
+                                contentsAdapter.notifyDataSetChanged();
+
+                                // 更新本地数据
+                                item_contents_tv_bad.setText(count);
+
+                                Resources resources = getActivity().getResources();
+                                Drawable drawableBad = resources.getDrawable(R.mipmap.bad_blue);
+                                int blue = resources.getColor(R.color.color_good_bad_comment_skip);
+                                drawableBad.setBounds(0, 0, drawableBad.getMinimumWidth(), drawableBad.getMinimumHeight());
+                                item_contents_tv_bad.setCompoundDrawables(drawableBad, null, null, null);
+                                item_contents_tv_bad.setTextColor(blue);
+
+                                // 添加+1动画
+                                FlyPopupWindow flyPopupWindow = new FlyPopupWindow(getActivity());
+                                flyPopupWindow.setTextInfo("+ 1", blue, 15);
+                                flyPopupWindow.show(item_contents_tv_bad);
+
+                                // 更新服务器数据
+                                mPresenter.requestUpdateBadCount(item.contentsId);
+                            } else {
+                                String title = getActivity().getResources().getString(R.string.count_clicked);
+                                CustomToast.show(getActivity(), title, CustomToast.LENGTH_SHORT);
+                            }
                         }
                         break;
                     /**
-                     * 跳转评论页
-                     *
-                     *
+                     * 评论,也是跳转到详情页面，但会滑动到底部，用comment标记
                      */
                     case R.id.item_contents_tv_comment:
-                        Toast.makeText(getActivity(), "点击了评论~", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getActivity(), ContentsDetailsActivity.class);
+                        Bundle bundleComment = new Bundle();
+                        bundleComment.putParcelable("contents", item);
+                        bundleComment.putBoolean("isComment", true);
+                        intent.putExtras(bundleComment);
+                        startActivity(intent);
                         break;
                     /**
-                     * 弹出转发对话框
+                     * 分享转发
                      *
                      *
                      */
                     case R.id.item_contents_tv_skip:
-                        Toast.makeText(getActivity(), "点击了转发~", Toast.LENGTH_SHORT).show();
+                        ShareDomain shareDomain = new ShareDomain(getActivity());
+                        shareDomain.startShare();
                         break;
                     /**
                      *
@@ -246,23 +345,6 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
                     default:
                         break;
 
-                }
-            }
-        });
-
-        recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
-            @Override
-            public void onChildViewAttachedToWindow(View view) {
-
-            }
-
-            @Override
-            public void onChildViewDetachedFromWindow(View view) {
-                if (JCVideoPlayerManager.getFirstFloor() != null) {
-                    JCVideoPlayer videoPlayer = JCVideoPlayerManager.getCurrentJcvd();
-                    if (((ViewGroup) view).indexOfChild(videoPlayer) != -1 && videoPlayer.currentState == JCVideoPlayer.CURRENT_STATE_PLAYING) {
-                        JCVideoPlayer.releaseAllVideos();
-                    }
                 }
             }
         });
@@ -365,16 +447,12 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
         List<Contents.Data.ContentsInfo> contentsMore = contents.data.contents;
 
         if (contentsMore.isEmpty()) {
-            contentsAdapter.loadMoreEnd();
-
+            // 显示没有更多数据了
+            contentsAdapter.loadMoreEnd(false);
             return;
-
         }
-        contentsAdapter.loadMoreEnd(false);
         // 当前个数加上加载更多的个数
         currentCount += contents.data.currentCount;
-
-        contentsAdapter.addData(contentsMore);
 
         int size = contentsMore.size();
         for (int i = 0; i < size; i++) {
@@ -384,12 +462,39 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
             list.add(size, sparseBooleanArray);
         }
 
+        contentsAdapter.addData(contentsMore);
     }
 
+    /**
+     * 加载更多数据出错
+     *
+     * @param errorMsg
+     */
     @Override
     public void showMoreDataError(String errorMsg) {
         contentsAdapter.loadMoreComplete();
 
         Toast.makeText(getActivity(), "加载出错了", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 点赞成功：没有后续操作，可以去掉
+     *
+     * @param goodOrBadCount
+     */
+    @Override
+    public void showUpdateGoodCount(GoodOrBadCount goodOrBadCount) {
+
+
+    }
+
+    /**
+     * 被踩成功
+     *
+     * @param goodOrBadCount
+     */
+    @Override
+    public void showUpdateBadCount(GoodOrBadCount goodOrBadCount) {
+
     }
 }
