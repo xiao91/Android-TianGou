@@ -54,16 +54,19 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"/>
 
+        <TextView
+            android:id="@+id/item_comments_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_alignLeft="@+id/item_comments_tv_username"
+            android:layout_alignStart="@+id/item_comments_tv_username"
+            android:layout_below="@+id/item_comments_tv_time"
+            android:text="评论的内容"
+            android:textColor="@color/color_item_content"
+            android:textSize="@dimen/sp_item_comment" />
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/item_comments_tv_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
-        android:text="评论的内容"
-        android:textColor="@color/color_item_content"
-        android:textSize="@dimen/sp_item_comment" />
 
 </LinearLayout>

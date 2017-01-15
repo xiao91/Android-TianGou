@@ -23,6 +23,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.xiao91.heiboy.ContentsDetailsActivity;
 import com.xiao91.heiboy.MultiImageActivity;
 import com.xiao91.heiboy.R;
+import com.xiao91.heiboy.UserContentActivity;
 import com.xiao91.heiboy.adapter.ContentsItemAdapter;
 import com.xiao91.heiboy.bean.Contents;
 import com.xiao91.heiboy.bean.GoodOrBadCount;
@@ -203,7 +204,9 @@ public class ContentsFragment extends MVPAbsFragment<ContentsView, ContentsPrese
                 Intent intent = null;
                 switch (view.getId()) {
                     case R.id.item_contents_iv_user_photo:
-                        Toast.makeText(getActivity(), "点击了头像~", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getActivity(), UserContentActivity.class);
+                        intent.putExtra("userId", item.userId);
+                        startActivity(intent);
                         break;
                     /**
                      * 段子、单张图片点击

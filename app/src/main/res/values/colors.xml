@@ -17,6 +17,8 @@
     <color name="root_bg">#FFFFFF</color>
     <color name="root_title">#0286F0</color>
 
+    <color name="gradient_bg">#046780</color>
+
     <color name="view_line">#45DBDBDB</color>
 
     <color name="color_white">#FFFFFF</color>

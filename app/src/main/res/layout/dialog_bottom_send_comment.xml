@@ -32,8 +32,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_10"
-        android:paddingBottom="@dimen/dp_8"
-        android:paddingTop="@dimen/dp_8"
         android:background="@drawable/gray_tv_bg_corner"
         android:textColor="@color/color_white"
         android:text="@string/comments_send" />

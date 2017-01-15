@@ -1,21 +1,12 @@
 package com.xiao91.heiboy.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.xiao91.heiboy.LoginActivity;
 import com.xiao91.heiboy.R;
-import com.xiao91.heiboy.utils.SharedUtils;
 
 /**
  * 个人中心
@@ -73,44 +64,44 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        LinearLayout ll_login = (LinearLayout) view.findViewById(R.id.ll_login);
-        ImageView me_iv_set = (ImageView) view.findViewById(R.id.me_iv_set);
-        TextView tv_fensi = (TextView) view.findViewById(R.id.tv_fensi);
-        TextView tv_guanzhu = (TextView) view.findViewById(R.id.tv_guanzhu);
-        TextView tv_jifen = (TextView) view.findViewById(R.id.tv_jifen);
-        ll_login.setOnClickListener(this);
-        me_iv_set.setOnClickListener(this);
-        tv_fensi.setOnClickListener(this);
-        tv_guanzhu.setOnClickListener(this);
-        tv_jifen.setOnClickListener(this);
+//        LinearLayout ll_login = (LinearLayout) view.findViewById(R.id.ll_login);
+//        ImageView me_iv_set = (ImageView) view.findViewById(R.id.me_iv_set);
+//        TextView tv_fensi = (TextView) view.findViewById(R.id.tv_fensi);
+//        TextView tv_guanzhu = (TextView) view.findViewById(R.id.tv_guanzhu);
+//        TextView tv_jifen = (TextView) view.findViewById(R.id.tv_jifen);
+//        ll_login.setOnClickListener(this);
+//        me_iv_set.setOnClickListener(this);
+//        tv_fensi.setOnClickListener(this);
+//        tv_guanzhu.setOnClickListener(this);
+//        tv_jifen.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.ll_login:
-                boolean isLogin = SharedUtils.getSharedBoolean(getActivity(), SharedUtils.LOGIN, false);
-                if (isLogin) {
-                    Toast.makeText(getActivity(), "已经登陆，进入我的详情界面，修改信息", Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
-                }
-                break;
-            case R.id.me_iv_set:
-                Toast.makeText(getActivity(), "设置", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.tv_fensi:
-                Toast.makeText(getActivity(), "粉丝", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.tv_guanzhu:
-                Toast.makeText(getActivity(), "关注", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.tv_jifen:
-                Toast.makeText(getActivity(), "积分", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
+//        switch (view.getId()){
+//            case R.id.ll_login:
+//                boolean isLogin = SharedUtils.getSharedBoolean(getActivity(), SharedUtils.LOGIN, false);
+//                if (isLogin) {
+//                    Toast.makeText(getActivity(), "已经登陆，进入我的详情界面，修改信息", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    startActivity(intent);
+//                }
+//                break;
+//            case R.id.me_iv_set:
+//                Toast.makeText(getActivity(), "设置", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.tv_fensi:
+//                Toast.makeText(getActivity(), "粉丝", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.tv_guanzhu:
+//                Toast.makeText(getActivity(), "关注", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.tv_jifen:
+//                Toast.makeText(getActivity(), "积分", Toast.LENGTH_SHORT).show();
+//                break;
+//            default:
+//                break;
+//        }
     }
 }

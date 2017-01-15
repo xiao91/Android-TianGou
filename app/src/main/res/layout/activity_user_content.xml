@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_user_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xiao91.heiboy.UserContentActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/gradient_bg">
+
+        <include
+            layout="@layout/include_root_title"/>
+
+        <!--用户头像-->
+        <ImageView
+            android:id="@+id/me_iv_login_photo"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_10"
+            android:src="@mipmap/head"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/user_tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp_10"
+            android:drawableLeft="@mipmap/address"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="深圳"
+            android:textSize="@dimen/sp_me_title"
+            android:textColor="@color/me_title" />
+
+        <!--加关注-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dp_10"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/user_tv_add_care"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注"
+                android:drawableLeft="@mipmap/add_small_white"
+                android:drawablePadding="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_20"
+                android:paddingLeft="@dimen/dp_20"
+                android:background="@drawable/blue_tv_bg_corner"
+                android:textSize="@dimen/sp_me_title"
+                android:textColor="@color/me_title" />
+
+            <TextView
+                android:id="@+id/user_tv_send_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_10"
+                android:drawableLeft="@mipmap/msg_white"
+                android:drawablePadding="@dimen/dp_5"
+                android:background="@drawable/gray_tv_bg_corner"
+                android:text="发私信"
+                android:textSize="@dimen/sp_me_title"
+                android:textColor="@color/me_title" />
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/include_ll_care"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

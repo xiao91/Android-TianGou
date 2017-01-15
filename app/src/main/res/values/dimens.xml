@@ -23,7 +23,7 @@
 
     <dimen name="dp_video">200dp</dimen>
 
-    <dimen name="item_user_photo">40dp</dimen>
+    <dimen name="item_user_photo">36dp</dimen>
     <dimen name="item_min_image">200dp</dimen>
     <dimen name="item_max_image">250dp</dimen>
 

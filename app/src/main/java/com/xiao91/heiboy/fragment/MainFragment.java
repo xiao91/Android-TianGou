@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.xiao91.heiboy.R;
@@ -73,6 +74,13 @@ public class MainFragment extends Fragment {
     private void initView(View view) {
         mainTab = (TabLayout) view.findViewById(R.id.main_tab);
         mainViewPager = (ViewPager) view.findViewById(R.id.main_viewpager);
+        ImageView iv_right_navigation = (ImageView) view.findViewById(R.id.iv_right_navigation);
+        iv_right_navigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainTab.scrollBy(mainTab.getWidth(), 0);
+            }
+        });
 
         fab = (FloatingActionButton) view.findViewById(R.id.main_fab);
         fab.setOnClickListener(new View.OnClickListener() {
