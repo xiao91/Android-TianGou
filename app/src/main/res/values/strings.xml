@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">天狗</string>
+    <string name="app_name">全民段子</string>
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -17,4 +17,14 @@
     <string name="title_activity_multi_image">MultiImageActivity</string>
 
     <string name="tousu">投诉</string>
+
+    <string name="uc_home">主页</string>
+    <string name="uc_relay">转发</string>
+
+
+    <string name="toast_empty_data">没有数据</string>
+    <string name="toast_net_error">网络出错</string>
+    <string name="toast_server_error">服务器出错</string>
+
+
 </resources>

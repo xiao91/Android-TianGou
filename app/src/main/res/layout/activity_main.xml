@@ -1,11 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.xiao91.heiboy.MainActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.xiao91.sky.activity.MainActivity"
+    tools:showIn="@layout/activity_main">
 
-    <include layout="@layout/content_main" />
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_line">
+    </FrameLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_005"
+        android:layout_above="@+id/ll_01"
+        android:background="@color/view_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tv_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:drawableTop="@drawable/svg_home_selector"
+            android:drawablePadding="3dp"
+            android:textSize="11sp"
+            android:textColor="@color/bottom_navigation"
+            android:text="首页"/>
+
+        <TextView
+            android:id="@+id/tv_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:drawableTop="@drawable/svg_discover_selector"
+            android:drawablePadding="3dp"
+            android:textSize="11sp"
+            android:textColor="@color/bottom_navigation"
+            android:text="发现"/>
+
+        <TextView
+            android:id="@+id/tv_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:drawableTop="@drawable/svg_my_selector"
+            android:drawablePadding="3dp"
+            android:textSize="11sp"
+            android:textColor="@color/bottom_navigation"
+            android:text="我的"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

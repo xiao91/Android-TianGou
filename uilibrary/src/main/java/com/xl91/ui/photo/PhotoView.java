@@ -14,18 +14,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
 /**
- * 可以缩放的ImageView
+ * Created by liuheng on 2015/6/21.
+ * <p></p>
+ * 如有任何意见和建议可邮件  bmme@vip.qq.com
  */
 public class PhotoView extends ImageView {
 
     private final static int MIN_ROTATE = 35;
-    private final static int ANIMA_DURING = 320;
+    private final static int ANIMA_DURING = 340;
     private final static float MAX_SCALE = 2.5f;
+
+    private int mMinRotate;
+    private int mAnimaDuring;
+    private float mMaxScale;
+
     private int MAX_OVER_SCROLL = 0;
     private int MAX_FLING_OVER_SCROLL = 0;
     private int MAX_OVER_RESISTANCE = 0;
@@ -48,6 +56,7 @@ public class PhotoView extends ImageView {
     private boolean isKnowSize;
     private boolean hasOverTranslate;
     private boolean isEnable = false;
+    private boolean isRotateEnable = false;
     private boolean isInit;
     private boolean mAdjustViewBounds;
     // 当前是否处于放大状态
@@ -79,11 +88,11 @@ public class PhotoView extends ImageView {
     private Transform mTranslate = new Transform();
 
     private RectF mClip;
-    private Info mInfo;
+    private Info mFromInfo;
     private long mInfoTime;
     private Runnable mCompleteCallBack;
 
-    private float[] mValues = new float[16];
+    private OnLongClickListener mLongClick;
 
     public PhotoView(Context context) {
         super(context);
@@ -110,9 +119,16 @@ public class PhotoView extends ImageView {
         MAX_OVER_SCROLL = (int) (density * 30);
         MAX_FLING_OVER_SCROLL = (int) (density * 30);
         MAX_OVER_RESISTANCE = (int) (density * 140);
+
+        mMinRotate = MIN_ROTATE;
+        mAnimaDuring = ANIMA_DURING;
+        mMaxScale = MAX_SCALE;
     }
 
-    public static int getDefaultAnimaDuring() {
+    /**
+     * 获取默认的动画持续时间
+     */
+    public int getDefaultAnimaDuring() {
         return ANIMA_DURING;
     }
 
@@ -124,19 +140,83 @@ public class PhotoView extends ImageView {
 
     @Override
     public void setScaleType(ScaleType scaleType) {
-        ScaleType old = mScaleType;
-        mScaleType = scaleType;
+        if (scaleType == ScaleType.MATRIX) return;
 
-        if (old != scaleType)
-            initBase();
+        if (scaleType != mScaleType) {
+            mScaleType = scaleType;
+
+            if (isInit) {
+                initBase();
+            }
+        }
     }
 
+    @Override
+    public void setOnLongClickListener(OnLongClickListener l) {
+        mLongClick = l;
+    }
+
+    /**
+     * 设置动画的插入器
+     */
+    public void setInterpolator(Interpolator interpolator) {
+        mTranslate.setInterpolator(interpolator);
+    }
+
+    /**
+     * 获取动画持续时间
+     */
+    public int getAnimaDuring() {
+        return mAnimaDuring;
+    }
+
+    /**
+     * 设置动画的持续时间
+     */
+    public void setAnimaDuring(int during) {
+        mAnimaDuring = during;
+    }
+
+    /**
+     * 设置最大可以缩放的倍数
+     */
+    public void setMaxScale(float maxScale) {
+        mMaxScale = maxScale;
+    }
+
+    /**
+     * 获取最大可以缩放的倍数
+     */
+    public float getMaxScale() {
+        return mMaxScale;
+    }
+
+    /**
+     * 启用缩放功能
+     */
     public void enable() {
         isEnable = true;
     }
 
+    /**
+     * 禁用缩放功能
+     */
     public void disenable() {
         isEnable = false;
+    }
+
+    /**
+     * 启用旋转功能
+     */
+    public void enableRotate() {
+        isRotateEnable = true;
+    }
+
+    /**
+     * 禁用旋转功能
+     */
+    public void disableRotate() {
+        isRotateEnable = false;
     }
 
     /**
@@ -184,14 +264,14 @@ public class PhotoView extends ImageView {
         return true;
     }
 
-    private int getDrawableWidth(Drawable d) {
+    private static int getDrawableWidth(Drawable d) {
         int width = d.getIntrinsicWidth();
         if (width <= 0) width = d.getMinimumWidth();
         if (width <= 0) width = d.getBounds().width();
         return width;
     }
 
-    private int getDrawableHeight(Drawable d) {
+    private static int getDrawableHeight(Drawable d) {
         int height = d.getIntrinsicHeight();
         if (height <= 0) height = d.getMinimumHeight();
         if (height <= 0) height = d.getBounds().height();
@@ -273,11 +353,11 @@ public class PhotoView extends ImageView {
 
         isInit = true;
 
-        if (mInfo != null && System.currentTimeMillis() - mInfoTime < MAX_ANIM_FROM_WAITE) {
-            animaFrom(mInfo);
+        if (mFromInfo != null && System.currentTimeMillis() - mInfoTime < MAX_ANIM_FROM_WAITE) {
+            animaFrom(mFromInfo);
         }
 
-        mInfo = null;
+        mFromInfo = null;
     }
 
     private void initCenter() {
@@ -346,10 +426,10 @@ public class PhotoView extends ImageView {
         initFitCenter();
 
         float ty = -mImgRect.top;
-        mTranslateY += ty;
         mAnimaMatrix.postTranslate(0, ty);
         executeTranslate();
         resetBase();
+        mTranslateY += ty;
     }
 
     private void initFitEnd() {
@@ -504,9 +584,12 @@ public class PhotoView extends ImageView {
             if (event.getPointerCount() >= 2) hasMultiTouch = true;
 
             mDetector.onTouchEvent(event);
-            mRotateDetector.onTouchEvent(event);
+            if (isRotateEnable) {
+                mRotateDetector.onTouchEvent(event);
+            }
             mScaleDetector.onTouchEvent(event);
-            if (Action == MotionEvent.ACTION_UP || Action == MotionEvent.ACTION_CANCEL) onUp(event);
+
+            if (Action == MotionEvent.ACTION_UP || Action == MotionEvent.ACTION_CANCEL) onUp();
 
             return true;
         } else {
@@ -514,7 +597,7 @@ public class PhotoView extends ImageView {
         }
     }
 
-    private void onUp(MotionEvent ev) {
+    private void onUp() {
         if (mTranslate.isRuning) return;
 
         if (canRotate || mDegrees % 90 != 0) {
@@ -536,9 +619,9 @@ public class PhotoView extends ImageView {
         if (mScale < 1) {
             scale = 1;
             mTranslate.withScale(mScale, 1);
-        } else if (mScale > MAX_SCALE) {
-            scale = MAX_SCALE;
-            mTranslate.withScale(mScale, MAX_SCALE);
+        } else if (mScale > mMaxScale) {
+            scale = mMaxScale;
+            mTranslate.withScale(mScale, mMaxScale);
         }
 
         float cx = mImgRect.left + mImgRect.width() / 2;
@@ -546,6 +629,7 @@ public class PhotoView extends ImageView {
 
         mScaleCenter.set(cx, cy);
         mRotateCenter.set(cx, cy);
+
         mTranslateX = 0;
         mTranslateY = 0;
 
@@ -601,6 +685,7 @@ public class PhotoView extends ImageView {
     }
 
     private OnRotateListener mRotateListener = new OnRotateListener() {
+
         @Override
         public void onRotate(float degrees, float focusX, float focusY) {
             mRotateFlag += degrees;
@@ -608,7 +693,7 @@ public class PhotoView extends ImageView {
                 mDegrees += degrees;
                 mAnimaMatrix.postRotate(degrees, focusX, focusY);
             } else {
-                if (Math.abs(mRotateFlag) >= MIN_ROTATE) {
+                if (Math.abs(mRotateFlag) >= mMinRotate) {
                     canRotate = true;
                     mRotateFlag = 0;
                 }
@@ -694,6 +779,13 @@ public class PhotoView extends ImageView {
     private GestureDetector.OnGestureListener mGestureListener = new GestureDetector.SimpleOnGestureListener() {
 
         @Override
+        public void onLongPress(MotionEvent e) {
+            if (mLongClick != null) {
+                mLongClick.onLongClick(PhotoView.this);
+            }
+        }
+
+        @Override
         public boolean onDown(MotionEvent e) {
             hasOverTranslate = false;
             hasMultiTouch = false;
@@ -731,14 +823,14 @@ public class PhotoView extends ImageView {
                 mTranslate.withRotate((int) mDegrees, (int) toDegrees);
 
                 mDegrees = toDegrees;
-
             }
 
             doTranslateReset(mImgRect);
+
             mTranslate.withFling(vx, vy);
 
-            onUp(e2);
             mTranslate.start();
+            // onUp(e2);
             return super.onFling(e1, e2, velocityX, velocityY);
         }
 
@@ -823,7 +915,7 @@ public class PhotoView extends ImageView {
                 to = 1;
             } else {
                 from = mScale;
-                to = MAX_SCALE;
+                to = mMaxScale;
 
                 mScaleCenter.set(e.getX(), e.getY());
             }
@@ -876,6 +968,27 @@ public class PhotoView extends ImageView {
         return canScrollVerticallySelf(direction);
     }
 
+    private class InterpolatorProxy implements Interpolator {
+
+        private Interpolator mTarget;
+
+        private InterpolatorProxy() {
+            mTarget = new DecelerateInterpolator();
+        }
+
+        public void setTargetInterpolator(Interpolator interpolator) {
+            mTarget = interpolator;
+        }
+
+        @Override
+        public float getInterpolation(float input) {
+            if (mTarget != null) {
+                return mTarget.getInterpolation(input);
+            }
+            return input;
+        }
+    }
+
     private class Transform implements Runnable {
 
         boolean isRuning;
@@ -896,24 +1009,29 @@ public class PhotoView extends ImageView {
 
         RectF mClipRect = new RectF();
 
+        InterpolatorProxy mInterpolatorProxy = new InterpolatorProxy();
+
         Transform() {
             Context ctx = getContext();
-            DecelerateInterpolator i = new DecelerateInterpolator();
-            mTranslateScroller = new OverScroller(ctx, i);
-            mScaleScroller = new Scroller(ctx, i);
-            mFlingScroller = new OverScroller(ctx, i);
-            mClipScroller = new Scroller(ctx, i);
-            mRotateScroller = new Scroller(ctx, i);
+            mTranslateScroller = new OverScroller(ctx, mInterpolatorProxy);
+            mScaleScroller = new Scroller(ctx, mInterpolatorProxy);
+            mFlingScroller = new OverScroller(ctx, mInterpolatorProxy);
+            mClipScroller = new Scroller(ctx, mInterpolatorProxy);
+            mRotateScroller = new Scroller(ctx, mInterpolatorProxy);
+        }
+
+        public void setInterpolator(Interpolator interpolator) {
+            mInterpolatorProxy.setTargetInterpolator(interpolator);
         }
 
         void withTranslate(int startX, int startY, int deltaX, int deltaY) {
             mLastTranslateX = 0;
             mLastTranslateY = 0;
-            mTranslateScroller.startScroll(0, 0, deltaX, deltaY, ANIMA_DURING);
+            mTranslateScroller.startScroll(0, 0, deltaX, deltaY, mAnimaDuring);
         }
 
         void withScale(float form, float to) {
-            mScaleScroller.startScroll((int) (form * 10000), 0, (int) ((to - form) * 10000), 0, ANIMA_DURING);
+            mScaleScroller.startScroll((int) (form * 10000), 0, (int) ((to - form) * 10000), 0, mAnimaDuring);
         }
 
         void withClip(float fromX, float fromY, float deltaX, float deltaY, int d, ClipCalculate c) {
@@ -922,7 +1040,7 @@ public class PhotoView extends ImageView {
         }
 
         void withRotate(int fromDegrees, int toDegrees) {
-            mRotateScroller.startScroll(fromDegrees, 0, toDegrees - fromDegrees, 0, ANIMA_DURING);
+            mRotateScroller.startScroll(fromDegrees, 0, toDegrees - fromDegrees, 0, mAnimaDuring);
         }
 
         void withRotate(int fromDegrees, int toDegrees, int during) {
@@ -974,7 +1092,7 @@ public class PhotoView extends ImageView {
         @Override
         public void run() {
 
-            if (!isRuning) return;
+            // if (!isRuning) return;
 
             boolean endAnima = true;
 
@@ -1030,17 +1148,36 @@ public class PhotoView extends ImageView {
             }
 
             if (!endAnima) {
-                mAnimaMatrix.reset();
-                mAnimaMatrix.postTranslate(-mBaseRect.left, -mBaseRect.top);
-                mAnimaMatrix.postTranslate(mRotateCenter.x, mRotateCenter.y);
-                mAnimaMatrix.postTranslate(-mHalfBaseRectWidth, -mHalfBaseRectHeight);
-                mAnimaMatrix.postRotate(mDegrees, mRotateCenter.x, mRotateCenter.y);
-                mAnimaMatrix.postScale(mScale, mScale, mScaleCenter.x, mScaleCenter.y);
-                mAnimaMatrix.postTranslate(mTranslateX, mTranslateY);
-                executeTranslate();
+                applyAnima();
                 postExecute();
             } else {
                 isRuning = false;
+
+                // 修复动画结束后边距有些空隙，
+                boolean needFix = false;
+
+                if (imgLargeWidth) {
+                    if (mImgRect.left > 0) {
+                        mTranslateX -= mImgRect.left;
+                    } else if (mImgRect.right < mWidgetRect.width()) {
+                        mTranslateX -= (int) (mWidgetRect.width() - mImgRect.right);
+                    }
+                    needFix = true;
+                }
+
+                if (imgLargeHeight) {
+                    if (mImgRect.top > 0) {
+                        mTranslateY -= mImgRect.top;
+                    } else if (mImgRect.bottom < mWidgetRect.height()) {
+                        mTranslateY -= (int) (mWidgetRect.height() - mImgRect.bottom);
+                    }
+                    needFix = true;
+                }
+
+                if (needFix) {
+                    applyAnima();
+                }
+
                 invalidate();
 
                 if (mCompleteCallBack != null) {
@@ -1050,6 +1187,18 @@ public class PhotoView extends ImageView {
             }
         }
 
+        private void applyAnima() {
+            mAnimaMatrix.reset();
+            mAnimaMatrix.postTranslate(-mBaseRect.left, -mBaseRect.top);
+            mAnimaMatrix.postTranslate(mRotateCenter.x, mRotateCenter.y);
+            mAnimaMatrix.postTranslate(-mHalfBaseRectWidth, -mHalfBaseRectHeight);
+            mAnimaMatrix.postRotate(mDegrees, mRotateCenter.x, mRotateCenter.y);
+            mAnimaMatrix.postScale(mScale, mScale, mScaleCenter.x, mScaleCenter.y);
+            mAnimaMatrix.postTranslate(mTranslateX, mTranslateY);
+            executeTranslate();
+        }
+
+
         private void postExecute() {
             if (isRuning) post(this);
         }
@@ -1057,20 +1206,40 @@ public class PhotoView extends ImageView {
 
     public Info getInfo() {
         RectF rect = new RectF();
-        RectF local = new RectF();
         int[] p = new int[2];
-        getLocation(p);
+        getLocation(this, p);
         rect.set(p[0] + mImgRect.left, p[1] + mImgRect.top, p[0] + mImgRect.right, p[1] + mImgRect.bottom);
-        local.set(p[0], p[1], p[0] + mImgRect.width(), p[1] + mImgRect.height());
-        return new Info(rect, local, mImgRect, mWidgetRect, mScale, mDegrees, mScaleType);
+        return new Info(rect, mImgRect, mWidgetRect, mBaseRect, mScreenCenter, mScale, mDegrees, mScaleType);
     }
 
-    private void getLocation(int[] position) {
+    public static Info getImageViewInfo(ImageView imgView) {
+        int[] p = new int[2];
+        getLocation(imgView, p);
 
-        position[0] += getLeft();
-        position[1] += getTop();
+        Drawable drawable = imgView.getDrawable();
 
-        ViewParent viewParent = getParent();
+        Matrix matrix = imgView.getImageMatrix();
+
+        int width = getDrawableWidth(drawable);
+        int height = getDrawableHeight(drawable);
+
+        RectF imgRect = new RectF(0, 0, width, height);
+        matrix.mapRect(imgRect);
+
+        RectF rect = new RectF(p[0] + imgRect.left, p[1] + imgRect.top, p[0] + imgRect.right, p[1] + imgRect.bottom);
+        RectF widgetRect = new RectF(0, 0, imgView.getWidth(), imgView.getHeight());
+        RectF baseRect = new RectF(widgetRect);
+        PointF screenCenter = new PointF(widgetRect.width() / 2, widgetRect.height() / 2);
+
+        return new Info(rect, imgRect, widgetRect, baseRect, screenCenter, 1, 0, imgView.getScaleType());
+    }
+
+    private static void getLocation(View target, int[] position) {
+
+        position[0] += target.getLeft();
+        position[1] += target.getTop();
+
+        ViewParent viewParent = target.getParent();
         while (viewParent instanceof View) {
             final View view = (View) viewParent;
 
@@ -1128,7 +1297,6 @@ public class PhotoView extends ImageView {
      * (等待的时间默认500毫秒，可以通过setMaxAnimFromWaiteTime(int)设置最大等待时间)
      */
     public void animaFrom(Info info) {
-
         if (isInit) {
             reset();
 
@@ -1141,9 +1309,12 @@ public class PhotoView extends ImageView {
             float ocx = info.mRect.left + info.mRect.width() / 2;
             float ocy = info.mRect.top + info.mRect.height() / 2;
 
+            float mcx = mine.mRect.left + mine.mRect.width() / 2;
+            float mcy = mine.mRect.top + mine.mRect.height() / 2;
+
             mAnimaMatrix.reset();
-            mAnimaMatrix.postTranslate(-mBaseRect.left, -mBaseRect.top);
-            mAnimaMatrix.postTranslate(ocx - mBaseRect.width() / 2, ocy - mBaseRect.height() / 2);
+            // mAnimaMatrix.postTranslate(-mBaseRect.left, -mBaseRect.top);
+            mAnimaMatrix.postTranslate(ocx - mcx, ocy - mcy);
             mAnimaMatrix.postScale(scale, scale, ocx, ocy);
             mAnimaMatrix.postRotate(info.mDegrees, ocx, ocy);
             executeTranslate();
@@ -1151,7 +1322,7 @@ public class PhotoView extends ImageView {
             mScaleCenter.set(ocx, ocy);
             mRotateCenter.set(ocx, ocy);
 
-            mTranslate.withTranslate(0, 0, (int) (mScreenCenter.x - ocx), (int) (mScreenCenter.y - ocy));
+            mTranslate.withTranslate(0, 0, (int) -(ocx - mcx), (int) -(ocy - mcy));
             mTranslate.withScale(scale, 1);
             mTranslate.withRotate((int) info.mDegrees, 0);
 
@@ -1163,7 +1334,7 @@ public class PhotoView extends ImageView {
 
                 ClipCalculate c = info.mScaleType == ScaleType.FIT_START ? new START() : info.mScaleType == ScaleType.FIT_END ? new END() : new OTHER();
 
-                mTranslate.withClip(clipX, clipY, 1 - clipX, 1 - clipY, ANIMA_DURING / 3, c);
+                mTranslate.withClip(clipX, clipY, 1 - clipX, 1 - clipY, mAnimaDuring / 3, c);
 
                 mTmpMatrix.setScale(clipX, clipY, (mImgRect.left + mImgRect.right) / 2, c.calculateTop());
                 mTmpMatrix.mapRect(mTranslate.mClipRect, mImgRect);
@@ -1172,7 +1343,7 @@ public class PhotoView extends ImageView {
 
             mTranslate.start();
         } else {
-            mInfo = info;
+            mFromInfo = info;
             mInfoTime = System.currentTimeMillis();
         }
     }
@@ -1206,7 +1377,7 @@ public class PhotoView extends ImageView {
 
             mTranslate.withTranslate(0, 0, (int) (tcx - mScaleCenter.x), (int) (tcy - mScaleCenter.y));
             mTranslate.withScale(mScale, scale);
-            mTranslate.withRotate((int) mDegrees, (int) info.mDegrees, ANIMA_DURING * 2 / 3);
+            mTranslate.withRotate((int) mDegrees, (int) info.mDegrees, mAnimaDuring * 2 / 3);
 
             if (info.mWidgetRect.width() < info.mRect.width() || info.mWidgetRect.height() < info.mRect.height()) {
                 float clipX = info.mWidgetRect.width() / info.mRect.width();
@@ -1221,13 +1392,22 @@ public class PhotoView extends ImageView {
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mTranslate.withClip(1, 1, -1 + cx, -1 + cy, ANIMA_DURING / 2, c);
+                        mTranslate.withClip(1, 1, -1 + cx, -1 + cy, mAnimaDuring / 2, c);
                     }
-                }, ANIMA_DURING / 2);
+                }, mAnimaDuring / 2);
             }
 
             mCompleteCallBack = completeCallBack;
             mTranslate.start();
         }
+    }
+
+    public void rotate(float degrees) {
+        mDegrees += degrees;
+        int centerX = (int) (mWidgetRect.left + mWidgetRect.width() / 2);
+        int centerY = (int) (mWidgetRect.top + mWidgetRect.height() /2);
+
+        mAnimaMatrix.postRotate(degrees, centerX, centerY);
+        executeTranslate();
     }
 }

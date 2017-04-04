@@ -30,7 +30,7 @@ Android端登陆账户：
 
 <img src="https://github.com/xiao91/Android-TianGou/raw/master/pic/内容详情.png" width="250">
 
-### 3. [下载Demo](https://github.com/xiao91/Android-TianGou/raw/master/pic/tiangou_1.0.1.apk) ###
+### 3. [下载Demo](https://github.com/xiao91/Android-TianGou/raw/master/pic/tiangou.apk) ###
 
 请先搭建完成PHP后端，才有数据显示！！！
 

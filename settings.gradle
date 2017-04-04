@@ -1,1 +1,1 @@
-include ':app', ':myokhttplibrary', ':uilibrary', ':BaseRecyclerViewAdapterHelperlibrary', ':jcvideoplayer-lib'
+include ':app', ':myokhttplibrary', ':jcvideoplayer-lib', ':uilibrary', ':BaseRecyclerViewlibrary'

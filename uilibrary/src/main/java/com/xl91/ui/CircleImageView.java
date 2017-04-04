@@ -23,7 +23,7 @@ import android.widget.ImageView;
 
 /**
  * 圆形图片控件
- *
+ * url:github
  */
 public class CircleImageView extends ImageView {
 

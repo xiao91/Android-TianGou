@@ -7,8 +7,6 @@
 		android:id="@+id/viewpager_PhotoView"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:scaleType="center"
-		android:adjustViewBounds="true"
 		android:layout_gravity="center" />
 
 	<ProgressBar

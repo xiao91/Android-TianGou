@@ -36,4 +36,18 @@
         <item name="android:background">@color/view_line</item>
     </style>
 
+    <!--关注信息-->
+    <style name="TvFocus">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/dp_10</item>
+        <item name="android:paddingTop">@dimen/dp_10</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:textSize">@dimen/txt_sp_16</item>
+        <item name="android:textColor">@color/block_menu_title</item>
+    </style>
+
 </resources>

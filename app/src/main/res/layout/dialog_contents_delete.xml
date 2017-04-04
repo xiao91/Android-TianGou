@@ -11,7 +11,7 @@
         android:gravity="center"
         android:padding="@dimen/dp_10"
         android:text="不喜欢的理由"
-        android:textColor="@color/me_title"
+        android:textColor="@color/color_white"
         android:textSize="@dimen/sp_16" />
 
     <RelativeLayout

@@ -10,7 +10,7 @@ import android.view.View;
 
 /**
  * 垂直分隔线
- *
+ * url:github上下载的...
  */
 public class VerticalDividerItemDecoration extends FlexibleDividerDecoration {
 

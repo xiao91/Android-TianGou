@@ -47,14 +47,14 @@
             android:textSize="@dimen/sp_11" />
 
         <TextView
-            android:id="@+id/details_tv_care"
+            android:id="@+id/tv_focus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/details_tv_user_name"
             android:background="@drawable/blue_hollow_corner"
-            android:text="关注"
+            android:text="+ 关注"
             android:textColor="@color/root_title"
             android:textSize="@dimen/sp_12" />
 

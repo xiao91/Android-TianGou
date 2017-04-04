@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_main_frame_bg"
-    tools:context="com.xiao91.heiboy.fragment.ContentsFragment">
+    tools:context="com.xiao91.sky.fragment.ContentsFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/content_swipe_refresh"

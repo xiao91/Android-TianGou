@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 /**
  * 字体两端对齐
+ *
+ *
  */
 public class FillTextView extends TextView {
 

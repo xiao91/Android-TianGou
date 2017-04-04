@@ -18,9 +18,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * 点赞效果
+ * 各种点赞效果
  *
  * 2017-01-11
+ *
+ * 在CSDN上下载的，链接不知道了...
  *
  */
 public class FlyPopupWindow extends PopupWindow implements IFlyPopupWindow {

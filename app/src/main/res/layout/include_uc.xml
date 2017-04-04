@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@color/color_white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_uc_topic"
+            style="@style/TvFocus"
+            android:text="关注的话题\n1" />
+
+        <TextView
+            android:id="@+id/tv_uc_focus1"
+            style="@style/TvFocus"
+            android:text="他关注的人\n2" />
+
+        <TextView
+            android:id="@+id/tv_uc_focus2"
+            style="@style/TvFocus"
+            android:text="关注他的人\n3" />
+
+    </LinearLayout>
+
+    <com.xl91.ui.XBlockMenuItem
+        android:id="@+id/bmi_uc_live"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bmi_press_selector"
+        app:mainDrawable="@mipmap/bmi_live"
+        app:showTopBorder="true"
+        app:showBottomBorder="true"
+        app:extendTextMarginNavigationDrawable="@dimen/dp_16"
+        app:bottomBorderStartFromText="true"
+        app:mainText="他的Live"
+        app:extendText="">
+    </com.xl91.ui.XBlockMenuItem>
+
+    <com.xl91.ui.XBlockMenuItem
+        android:id="@+id/bmi_uc_invitation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bmi_press_selector"
+        app:mainDrawable="@mipmap/bmi_invitation"
+        app:rightNavigationDrawable="@mipmap/right_navigation"
+        app:showBottomBorder="true"
+        app:bottomBorderStartFromText="true"
+        app:mainText="他的发帖"
+        app:extendText="">
+    </com.xl91.ui.XBlockMenuItem>
+
+    <com.xl91.ui.XBlockMenuItem
+        android:id="@+id/bmi_uc_collection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bmi_press_selector"
+        app:mainDrawable="@mipmap/bmi_collection"
+        app:rightNavigationDrawable="@mipmap/right_navigation"
+        app:showBottomBorder="true"
+        app:bottomBorderStartFromText="true"
+        app:mainText="他的收藏"
+        app:extendText="">
+    </com.xl91.ui.XBlockMenuItem>
+
+    <com.xl91.ui.XBlockMenuItem
+        android:id="@+id/bmi_uc_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bmi_press_selector"
+        app:mainDrawable="@mipmap/bmi_comment"
+        app:rightNavigationDrawable="@mipmap/right_navigation"
+        app:showBottomBorder="true"
+        app:bottomBorderStartFromText="true"
+        app:mainText="他的评论"
+        app:extendText="">
+    </com.xl91.ui.XBlockMenuItem>
+
+    <com.xl91.ui.XBlockMenuItem
+        android:id="@+id/bmi_uc_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bmi_press_selector"
+        app:mainDrawable="@mipmap/bmi_msg"
+        app:rightNavigationDrawable="@mipmap/right_navigation"
+        app:showBottomBorder="true"
+        app:mainText="他的留言板"
+        app:extendText="">
+    </com.xl91.ui.XBlockMenuItem>
+
+</LinearLayout>

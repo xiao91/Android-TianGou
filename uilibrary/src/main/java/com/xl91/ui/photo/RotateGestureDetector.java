@@ -3,7 +3,7 @@ package com.xl91.ui.photo;
 import android.view.MotionEvent;
 
 /**
- *
+ * Created by q2366 on 2015/10/12.
  */
 public class RotateGestureDetector {
 
@@ -42,8 +42,7 @@ public class RotateGestureDetector {
                     double deltaSlope = currDegrees - prevDegrees;
 
                     if (Math.abs(deltaSlope) <= MAX_DEGREES_STEP) {
-                        if (mListener != null)
-                            mListener.onRotate((float) deltaSlope, (x2 + x1) / 2, (y2 + y1) / 2);
+                        mListener.onRotate((float) deltaSlope, (x2 + x1) / 2, (y2 + y1) / 2);
                     }
                     mPrevSlope = mCurrSlope;
                 }

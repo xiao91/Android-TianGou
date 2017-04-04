@@ -17,17 +17,21 @@
     <color name="root_bg">#FFFFFF</color>
     <color name="root_title">#0286F0</color>
 
+    <!--tab-->
+    <color name="tab_indicator">#0286F0</color>
+    <color name="tab_unselected_text">#2B2B2B</color>
+
     <color name="gradient_bg">#046780</color>
 
     <color name="view_line">#45DBDBDB</color>
 
-    <color name="color_white">#FFFFFF</color>
+    <color name="color_white">#FFFFFFFF</color>
 
     <!--内容frame背景色-->
-    <color name="color_main_frame_bg">#EEEEEE</color>
+    <color name="color_main_frame_bg">#EFEFEF</color>
 
     <!--底部导航颜色-->
-    <color name="navigation_bg">#F4F5F6</color>
+    <color name="navigation_bg">#FEFEFE</color>
     <color name="navigation_text_selected">#0286F0</color>
     <color name="navigation_text_unselected">#888888</color>
 
@@ -43,9 +47,6 @@
     <color name="color_good_bad_comment_skip">#0286F0</color>
     <color name="color_pressed_good_bad_comment_skip">#CCCCCC</color>
 
-    <color name="me_title">#FFFFFF</color>
-    <color name="me_fensi_txt">#EFEFEF</color>
-
     <color name="fab_add_unselected">#0286F0</color>
     <color name="fab_add_select">#8DC8FA</color>
     <color name="fab_add_ripple">#33728dff</color>
@@ -53,5 +54,16 @@
     <color name="dialog_no">#999999</color>
     <color name="dialog_ok">#0286F0</color>
     <color name="dialog_content">#666666</color>
+
+    <color name="tv_focus">#777777</color>
+
+    <color name="color_toolbar_title">#000000</color>
+
+    <!--BlockMenuItem左标题颜色-->
+    <color name="block_menu_title">#2B2B2B</color>
+    <!--BlockMenuItem右标题颜色-->
+    <color name="block_menu_extend_title">#7D7D7D</color>
+
+    <color name="color_press">#EAEAEA</color>
 
 </resources>

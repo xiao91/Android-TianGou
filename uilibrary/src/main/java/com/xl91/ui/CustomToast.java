@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xl91.ui.utils.PixelUtils;
+
 /**
  * 自定义Toast
  * Created by xiao on 2017/1/11 0011.

@@ -20,4 +20,9 @@
         <item>6</item>
     </integer-array>
 
+    <string-array name="arr_tab_uc">
+        <item>她的主页</item>
+        <item>她的详情</item>
+    </string-array>
+
 </resources>

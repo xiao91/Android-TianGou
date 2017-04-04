@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.xiao91.heiboy.MultiImageActivity"
+    tools:context="com.xiao91.sky.activity.MultiImageActivity"
     tools:showIn="@layout/activity_multi_image">
 
     <android.support.v4.view.ViewPager
@@ -28,13 +28,5 @@
         android:visibility="visible"
         android:textColor="@color/color_white"
         android:textSize="@dimen/sp_14" />
-
-    <!--<ProgressBar-->
-        <!--android:id="@+id/multi_progressBar"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_gravity="center" />-->
 
 </RelativeLayout>

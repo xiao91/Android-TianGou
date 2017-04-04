@@ -14,12 +14,16 @@
     <dimen name="dp_20">20dp</dimen>
     <dimen name="dp_30">30dp</dimen>
     <dimen name="dp_tab_40">40dp</dimen>
+    <dimen name="dp_70">70dp</dimen>
+
+    <dimen name="dp_toolbar">50dp</dimen>
+    <dimen name="dp_me_title_h">50dp</dimen>
+    <dimen name="tab_h">40dp</dimen>
 
     <dimen name="dp_share_img">50dp</dimen>
 
-    <dimen name="dp_me_title_h">45dp</dimen>
     <dimen name="me_title">40dp</dimen>
-    <dimen name="sp_me_title">16sp</dimen>
+    <dimen name="sp_me_title">14sp</dimen>
 
     <dimen name="dp_video">200dp</dimen>
 
@@ -29,7 +33,7 @@
 
     <dimen name="sp_item_comment">16sp</dimen>
 
-    <dimen name="sp_good_bad">13sp</dimen>
+    <dimen name="sp_good_bad">14sp</dimen>
     <!--item内容字体大小-->
     <dimen name="sp_item_content">18sp</dimen>
     <dimen name="sp_item_type">12sp</dimen>
@@ -42,6 +46,10 @@
     <dimen name="txt_sp_12">12sp</dimen>
     <dimen name="txt_sp_14">14sp</dimen>
     <dimen name="txt_sp_16">16sp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
+
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 
 </resources>
