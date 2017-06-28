@@ -7,4 +7,7 @@
     <color name="nodeColor">#cccccc</color>
     <color name="nodeTextColor">#ec6a37</color>
 
+    <color name="dialog_title">#242125</color>
+    <color name="dialog_view_line">#DEDEDE</color>
+
 </resources>

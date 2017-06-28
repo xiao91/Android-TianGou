@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/delete"
-            android:layout_alignParentTop="true"
+            android:padding="@dimen/dp_8"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/item_contents_delete" />
@@ -46,7 +46,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:lines="1"
         android:ellipsize="end"
         android:textColor="@color/color_item_content"
         android:textSize="@dimen/sp_item_content"

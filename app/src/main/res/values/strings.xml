@@ -9,6 +9,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_contents_details">ContentsDetailsActivity</string>
 
+    <string name="tv_loading">正在加载中&#8230;</string>
     <string name="toast_error">加载出错了</string>
 
     <string name="comments_edit">我的神评论&#8230;</string>
@@ -17,14 +18,46 @@
     <string name="title_activity_multi_image">MultiImageActivity</string>
 
     <string name="tousu">投诉</string>
+    <string name="complaints">投诉</string>
 
     <string name="uc_home">主页</string>
     <string name="uc_relay">转发</string>
 
-
     <string name="toast_empty_data">没有数据</string>
     <string name="toast_net_error">网络出错</string>
     <string name="toast_server_error">服务器出错</string>
+
+    <string name="phone">手机号</string>
+    <string name="password">密码</string>
+    <string name="login">登陆</string>
+    <string name="login_quick">手机验证码登录</string>
+    <string name="forget_password">忘记密码</string>
+
+    <string name="login_other">其他方式登录</string>
+    <string name="login_weixin">微信</string>
+    <string name="login_qq">QQ</string>
+    <string name="login_sina">新浪</string>
+
+    <string name="toast_password">密码不能为空</string>
+    <string name="toast_phone">手机号码不正确</string>
+
+    <string name="toast_error_code">无法连接到服务器，错误码%1$d，请稍后再试</string>
+
+    <string name="register">快速注册</string>
+    <string name="register2">注册</string>
+    <string name="go_register">去注册</string>
+    <string name="prompt">提示</string>
+    <string name="register_again">该手机号码已被注册，请重新输入或进行其他操作</string>
+    <string name="find_password">找回密码</string>
+    <string name="go_login">去登录</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="password_error">密码错误，请重新输入密码</string>
+    <string name="offline">该账号已在另一个安卓设备上登录，继续操作，将强制下线另一设备上的账号</string>
+    <string name="phone_error">该手机号未被注册或不正确，请重新输入或进行其他操作</string>
+
+
+
 
 
 </resources>

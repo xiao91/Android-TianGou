@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_uc_activity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bg_height"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+        <ImageView
+            android:id="@+id/uc_iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/dog" />
+
+        <LinearLayout
+            android:id="@+id/rl_user_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <!--用户头像-->
+            <ImageView
+                android:id="@+id/uc_iv_head"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_gravity="center"
+                android:src="@mipmap/head" />
+
+            <TextView
+                android:id="@+id/tv_uc_addr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@mipmap/address"
+                android:drawablePadding="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
+                android:text="深圳"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_me_title" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/include_focus"/>
+
+    </RelativeLayout>
+</LinearLayout>

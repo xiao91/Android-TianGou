@@ -18,16 +18,16 @@ import android.widget.TextView;
 
 public class XBlockMenuItem extends LinearLayout {
 
-    private static final int DEFAULT_MAIN_TEXT_COLOR = Color.BLACK;
-    private static final int DEFAULT_MAIN_TEXT_SIZE = 18;
+    private static final int DEFAULT_MAIN_TEXT_COLOR = Color.parseColor("#565656");
+    private static final int DEFAULT_MAIN_TEXT_SIZE = 16;
     private static final int DEFAULT_MAIN_TEXT_PADDING = 16;
     private static final int DEFAULT_MAIN_TEXT_DRAWABLE_PADDING = 16;
 
     private static final int DEFAULT_EXTEND_TEXT_COLOR = Color.GRAY;
-    private static final int DEFAULT_EXTEND_TEXT_SIZE = 14;
+    private static final int DEFAULT_EXTEND_TEXT_SIZE = 12;
     private static final int DEFAULT_EXTEND_TEXT_MARGIN_NAVIGATION = 10;
 
-    private static final int DEFAULT_RIGHT_NAVIGATION_PADDING = 16;
+    private static final int DEFAULT_RIGHT_NAVIGATION_PADDING = 10;
 
     private static final float DEFAULT_TOP_BOTTOM_BORDER_SIZE = 0.5f;
     private static final int DEFAULT_TOP_BOTTOM_BORDER_COLOR = Color.parseColor("#DDDDDD");
@@ -170,7 +170,7 @@ public class XBlockMenuItem extends LinearLayout {
     }
 
     public void setextendText(String extendText) {
-        this.extendText = extendText;
+        tvExtend.setText(extendText);
     }
 
     public TextView getMainTextView() {

@@ -33,7 +33,7 @@
 
     <dimen name="sp_item_comment">16sp</dimen>
 
-    <dimen name="sp_good_bad">14sp</dimen>
+    <dimen name="sp_good_bad_15">15sp</dimen>
     <!--item内容字体大小-->
     <dimen name="sp_item_content">18sp</dimen>
     <dimen name="sp_item_type">12sp</dimen>
@@ -46,8 +46,8 @@
     <dimen name="txt_sp_12">12sp</dimen>
     <dimen name="txt_sp_14">14sp</dimen>
     <dimen name="txt_sp_16">16sp</dimen>
-    <dimen name="app_bar_height">200dp</dimen>
 
+    <dimen name="bg_height">180dp</dimen>
     <dimen name="margin_16">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 

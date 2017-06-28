@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="okrx-0.1.2">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/40e7d683246ce8208bf7c96d3ce4d469a7ed9cb4/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/40e7d683246ce8208bf7c96d3ce4d469a7ed9cb4/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lzy.net/okrx/0.1.2/df6b5b19c57ae68a0da604a82aeac9c528f15add/okrx-0.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

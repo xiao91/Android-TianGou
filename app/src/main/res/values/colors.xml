@@ -66,4 +66,9 @@
 
     <color name="color_press">#EAEAEA</color>
 
+
+    <color name="login_tv">#ECECEC</color>
+    <color name="login_tv_bg">#9A9A9A</color>
+
+    <color name="tv_register_login">#878787</color>
 </resources>

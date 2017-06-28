@@ -17,6 +17,7 @@
 
             <!--标题-->
             <RelativeLayout
+                android:id="@+id/uc_rl_title"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_me_title_h">
 
@@ -40,37 +41,13 @@
                     android:gravity="center"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/dp_10"
-                    android:layout_marginRight="@dimen/dp_10" />
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_10" />
 
             </RelativeLayout>
 
-            <!--登录提示-->
-            <LinearLayout
-                android:id="@+id/rl_uc_me"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!--用户头像-->
-                <ImageView
-                    android:id="@+id/iv_login_photo"
-                    android:layout_width="@dimen/dp_60"
-                    android:layout_height="@dimen/dp_60"
-                    app:srcCompat="@drawable/svg_login_head"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:id="@+id/tv_login_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="立即登录"
-                    android:textSize="@dimen/sp_me_title"
-                    android:textColor="@color/color_white" />
-
-            </LinearLayout>
+            <include
+                layout="@layout/include_head_user_center"/>
 
         </LinearLayout>
 

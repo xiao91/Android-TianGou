@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.xiao91.sky.activity.ContentsDetailsActivity">
+    tools:context="com.quanmin.sky.activity.ContentsDetailsActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <include layout="@layout/include_swipe_recyclerview"
         android:layout_above="@+id/detail_line"
-        android:orientation="vertical">
-
-        <include layout="@layout/include_root_title" />
-
-        <include layout="@layout/include_rv"/>
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
 
     <View
         android:id="@+id/detail_line"

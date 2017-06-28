@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="android-all-7.1.0_r7-robolectric-0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.robolectric/android-all/7.1.0_r7-robolectric-0/c6478c2c63230d9480023ea5d90180c1e4f3b893/android-all-7.1.0_r7-robolectric-0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.robolectric/android-all/7.1.0_r7-robolectric-0/b7e0db6ebdfb1bfc3f2074743d594385d2fea019/android-all-7.1.0_r7-robolectric-0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

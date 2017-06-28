@@ -16,10 +16,33 @@
 #   public *;
 #}
 
--dontwarn okio.**;
--keep class com.google.android.exoplayer.** { *; }
 
 -keep public class android.support.design.widget.BottomNavigationView { *; }
 -keep public class android.support.design.internal.BottomNavigationMenuView { *; }
 -keep public class android.support.design.internal.BottomNavigationPresenter { *; }
 -keep public class android.support.design.internal.BottomNavigationItemView { *; }
+
+# --------------------------start:myokhttp库的混淆--------------------------
+
+# myokhttp
+-dontwarn com.tsy.sdk.myokhttp.**
+-keep class com.tsy.sdk.myokhttp.**{*;}
+
+# okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+
+# okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+
+#persistentcookiejar
+-dontwarn com.franmontiel.persistentcookiejar.**
+-keep class com.franmontiel.persistentcookiejar.**{*;}
+
+#gson
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+# --------------------------end:myokhttp库的混淆--------------------------

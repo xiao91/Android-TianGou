@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="glide-transformations-2.0.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/019a3accb0d0705fedc62d5d04c5f11e8c6d1a2e/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/019a3accb0d0705fedc62d5d04c5f11e8c6d1a2e/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jp.wasabeef/glide-transformations/2.0.2/87061eb6c96686339ab1a2d30dbd77c247486014/glide-transformations-2.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

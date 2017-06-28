@@ -3,4 +3,9 @@
     <string name="loading">正在加载中&#8230;</string>
     <string name="no_net">亲，网络不给力，请设置网络</string>
     <string name="picker_title">%1$d年%2$d月%3$d日 %4$d:00</string>
+
+    <string name="dialog_title">提示</string>
+    <string name="dialog_content">内容</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_ok">确定</string>
 </resources>

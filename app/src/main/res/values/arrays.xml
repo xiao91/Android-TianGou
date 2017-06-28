@@ -25,4 +25,11 @@
         <item>她的详情</item>
     </string-array>
 
+    <string-array name="arr_user_tab">
+        <item>投稿</item>
+        <item>直播</item>
+        <item>收藏</item>
+        <item>评论</item>
+    </string-array>
+
 </resources>

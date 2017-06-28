@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xiao91.sky">
+    package="com.quanmin.sky">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -37,14 +37,14 @@
     <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <application
-        android:name=".app.TianGouApplication"
+        android:name="com.quanmin.sky.app.QuanMinApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.quanmin.sky.activity.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -55,19 +55,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.quanmin.sky.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
-            android:name=".activity.ContentsDetailsActivity"
+            android:name="com.quanmin.sky.activity.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.quanmin.sky.activity.ContentsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
-            android:name=".activity.MultiImageActivity"
+            android:name="com.quanmin.sky.activity.MultiImageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
-            android:name=".activity.UserCenterActivity"
+            android:name="com.quanmin.sky.activity.UserCenterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

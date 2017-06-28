@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/content_type_ll"
-    android:background="@color/item_content_bg"
-    android:padding="@dimen/dp_10">
+    android:background="@color/item_content_bg">
 
     <TextView
         android:id="@+id/item_contents_tv_type"
@@ -14,6 +13,9 @@
         android:background="@drawable/white_bg_fill_corner"
         android:textColor="@color/color_item_username"
         android:textSize="@dimen/sp_item_type"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginLeft="@dimen/dp_16"
         android:text="段子"/>
 
     <!--搞笑图片-->
@@ -21,11 +23,11 @@
         android:id="@+id/item_contents_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         android:visibility="visible"
         android:src="@mipmap/ic_launcher"
         android:layout_marginTop="@dimen/dp_10"
-        android:minHeight="@dimen/item_min_image"
-        android:maxHeight="@dimen/item_max_image"/>
+        android:minHeight="@dimen/item_min_image" />
 
     <!--段子-->
     <com.xl91.ui.FillTextView
@@ -35,6 +37,8 @@
         android:visibility="gone"
         android:lineSpacingMultiplier="1.2"
         android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginLeft="@dimen/dp_16"
         android:textColor="@color/color_item_content"
         android:textSize="@dimen/sp_item_content"
         android:text="笑话内容"/>
@@ -62,32 +66,42 @@
         android:visibility="gone">
     </fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginLeft="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_10">
 
-        <TextView
-            style="@style/GoodBadCommentSkip"
-            android:id="@+id/item_contents_tv_good"
-            android:drawableLeft="@drawable/item_good" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/GoodBadCommentSkip"
+                android:id="@+id/item_contents_tv_good"
+                android:drawableLeft="@drawable/item_good" />
 
-        <TextView
-            android:id="@+id/item_contents_tv_bad"
-            style="@style/GoodBadCommentSkip"
-            android:drawableLeft="@drawable/item_bad" />
+            <TextView
+                android:id="@+id/item_contents_tv_bad"
+                style="@style/GoodBadCommentSkip"
+                android:drawableLeft="@drawable/item_bad" />
 
-        <TextView
-            android:id="@+id/item_contents_tv_comment"
-            style="@style/GoodBadCommentSkip"
-            android:drawableLeft="@drawable/item_comments" />
+            <TextView
+                android:id="@+id/item_contents_tv_comment"
+                style="@style/GoodBadCommentSkip"
+                android:drawableLeft="@drawable/item_comments" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/item_contents_tv_skip"
             style="@style/GoodBadCommentSkip"
-            android:drawableLeft="@drawable/item_skip" />
+            android:drawableLeft="@drawable/item_skip"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

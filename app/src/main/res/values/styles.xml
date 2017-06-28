@@ -17,17 +17,24 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="DialogStyle" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/ver_tran_in</item>
+        <item name="@android:windowExitAnimation">@anim/ver_tran_out</item>
+    </style>
+
     <style name="GoodBadCommentSkip">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:clickable">true</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginLeft">@dimen/dp_20</item>
+        <item name="android:layout_marginRight">@dimen/dp_20</item>
+        <item name="android:padding">@dimen/dp_8</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/item_contents_good_bad</item>
-        <item name="android:textSize">@dimen/sp_good_bad</item>
+        <item name="android:textSize">@dimen/sp_good_bad_15</item>
         <item name="android:text">0</item>
-        <item name="android:drawablePadding">6dp</item>
+        <item name="android:drawablePadding">@dimen/dp_8</item>
     </style>
 
     <style name="LinesView">
@@ -44,10 +51,11 @@
         <item name="android:paddingTop">@dimen/dp_10</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
-        <item name="android:textSize">@dimen/txt_sp_16</item>
-        <item name="android:textColor">@color/block_menu_title</item>
+        <item name="android:textSize">@dimen/txt_sp_14</item>
+        <item name="android:textColor">@color/color_white</item>
     </style>
 
 </resources>

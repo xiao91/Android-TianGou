@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BaseRecyclerViewlibrary/BaseRecyclerViewlibrary.iml" filepath="$PROJECT_DIR$/BaseRecyclerViewlibrary/BaseRecyclerViewlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BaseRecyclerViewAdapterlibrary/BaseRecyclerViewAdapterlibrary.iml" filepath="$PROJECT_DIR$/BaseRecyclerViewAdapterlibrary/BaseRecyclerViewAdapterlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/TianGou.iml" filepath="$PROJECT_DIR$/TianGou.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/jcvideoplayer-lib/jcvideoplayer-lib.iml" filepath="$PROJECT_DIR$/jcvideoplayer-lib/jcvideoplayer-lib.iml" />
